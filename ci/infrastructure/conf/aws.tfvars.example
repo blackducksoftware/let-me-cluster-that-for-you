@@ -1,0 +1,7 @@
+cluster_provider = "aws"
+cluster_masters = "1"
+cluster_workers = "2"
+cluster_region = "us-east-1"
+cluster_prefix = "<uuid>"
+cluster_manager = "origin"
+cluster_manager_version = "1.5"

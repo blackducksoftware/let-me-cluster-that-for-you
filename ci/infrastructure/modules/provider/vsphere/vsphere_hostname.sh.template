@@ -1,0 +1,7 @@
+#!/bin/sh
+NSUPDATE_FILE=$(mktemp)
+echo "update delete ${node_hostname} A" >> $NSUPDATE_FILE
+echo "update add ${node_hostname} 60 A `hostname -I | cut -d ' ' -f 1`"  >> $NSUPDATE_FILE
+echo ' ' >> $NSUPDATE_FILE
+nsupdate $NSUPDATE_FILE
+rm $NSUPDATE_FILE

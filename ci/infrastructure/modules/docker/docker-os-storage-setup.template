@@ -1,0 +1,5 @@
+CONTAINER_THINPOOL=docker-pool
+ROOT_SIZE=75%VG
+DATA_SIZE=75%FREE
+DEVS=${docker_disk}
+VG=docker-vg

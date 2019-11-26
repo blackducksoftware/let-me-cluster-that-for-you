@@ -1,0 +1,28 @@
+#!/bin/bash
+
+DIR="${BASH_SOURCE%/*}"
+if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
+
+which terraform > /dev/null
+if [ $? -ne 0 ] 
+then
+  TF="${DIR}/terraform"
+else
+  TF="terraform"
+fi
+
+# This is hack to deal with an issue in terraform during
+# destroy where it is trying to access to variable it has
+# already destroyed.  The workaround  may go away in 12.x.
+# See: https://github.com/hashicorp/terraform/issues/18026
+export TF_WARN_OUTPUT_ERRORS=1
+$TF destroy -force -var-file=current-config
+if [ $? == 0 ]
+then
+  rm -f current-config modules/provider/main.tf
+else
+  echo "Warning: cluster did not shutdown cleanly.  Inspect the cloud provider for any cluster components and re-run $0 if needed"
+  exit 1
+fi
+
+rm -f ./kubeconfig

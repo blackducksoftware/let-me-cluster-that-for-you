@@ -1,0 +1,16 @@
+# Source: https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.11/examples/pvc.yaml
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: example-pvc
+#  namespace: default
+spec:
+  accessModes:
+    - ReadWriteOnce
+  # Either change your storage class to default by adding annotation or
+  # specify the storageClassName here
+  # storageClassName: local-path
+  resources:
+    requests:
+      storage: 1Gi

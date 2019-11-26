@@ -1,0 +1,6 @@
+cluster_provider = "eks"
+cluster_masters = "1"
+cluster_workers = "4"
+cluster_prefix = "ci"
+cluster_manager_version = "1.14"
+cluster_worker_image = "c4.2xlarge"

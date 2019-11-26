@@ -1,0 +1,18 @@
+#!/bin/bash -x
+
+cd /etc/sysconfig/network-scripts
+. ./network-functions
+
+[ -f ../network ] && . ../network
+
+NEW_RESOLV_CONF=`mktemp`
+
+cp /etc/resolv.conf $NEW_RESOLV_CONF
+if ! grep -qw search $NEW_RESOLV_CONF; then
+  echo 'search ${private_domain_name}' >> $NEW_RESOLV_CONF
+elif ! grep -q -E 'search.+${private_domain_name}' $NEW_RESOLV_CONF; then
+  sed -i -e 's/^search[[:blank:]]\(.\+\)\( ${sed_private_domain_name}\)\{0,1\}$/search \1 ${private_domain_name}/' $NEW_RESOLV_CONF
+fi
+
+cp -Z $NEW_RESOLV_CONF /etc/resolv.conf
+rm -f $NEW_RESOLV_CONF

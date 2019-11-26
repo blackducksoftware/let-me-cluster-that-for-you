@@ -1,0 +1,21 @@
+# Source: https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.11/examples/pod.yaml
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: example-pod
+#  namespace: default
+spec:
+  containers:
+    - name: volume-test
+      image: nginx:stable-alpine
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+        - name: volv
+          mountPath: /data
+      ports:
+        - containerPort: 80
+  volumes:
+    - name: volv
+      persistentVolumeClaim:
+        claimName: example-pvc

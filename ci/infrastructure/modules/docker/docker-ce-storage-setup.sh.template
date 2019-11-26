@@ -1,0 +1,7 @@
+#!/bin/sh
+
+pvcreate ${docker_disk}
+vgcreate docker ${docker_disk}
+lvcreate --wipesignatures y -n thinpool -l 75%VG docker
+lvcreate --wipesignatures y -n thinpoolmeta -l 1%VG docker
+lvconvert -y --zero n -c 512K --thinpool docker/thinpool --poolmetadata docker/thinpoolmeta

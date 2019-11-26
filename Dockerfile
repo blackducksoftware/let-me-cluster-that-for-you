@@ -77,7 +77,9 @@ LABEL maintainer="Yash Bhutwala"
 # copy only the stuff you need
 COPY ./ci/infrastructure /kippernetes/ci/infrastructure
 COPY ./ci/kube /kippernetes/ci/kube
-COPY ./hack/yash /kippernetes/hack/yash
+COPY ./k8s-addons /kippernetes/k8s-addons
+
+# TODO: still need to port these from kippernetes
 # not needed right now, but will add at some point
 #COPY ./ci/openshift /kippernetes/ci/openshift
 #COPY ./ci/swarm /kippernetes/ci/swarm

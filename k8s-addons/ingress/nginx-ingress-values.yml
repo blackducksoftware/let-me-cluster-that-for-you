@@ -1,0 +1,28 @@
+controller:
+  ingressClass: nginx
+  kind: DaemonSet
+  hostNetwork: true
+  daemonset:
+    useHostPort: true
+  config:
+    server-tokens: "false"
+  service:
+    enabled: false
+  stats:
+    enabled: true
+  metrics:
+    enabled: true
+
+defaultBackend:
+  enabled: true
+
+rbac:
+  create: true
+
+podSecurityPolicy:
+  enabled: false
+
+serviceAccount:
+  create: true
+  #name:
+

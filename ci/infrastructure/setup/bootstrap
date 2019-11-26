@@ -1,0 +1,41 @@
+#!/bin/bash
+
+tf_version="0.11.1"
+
+HOSTOS=`uname`
+
+if [[ "$HOSTOS" == 'Linux' ]]; then
+  sudo dnf install -y wget unzip jq || sudo yum install -y wget unzip jq
+elif [[ "$HOSTOS" == 'Darwin' ]]; then
+  HOMEBREW_NO_AUTO_UPDATE=1 brew install wget unzip jq
+fi
+which terraform > /dev/null
+if [[ $? != 0 ]]; then
+  if [[ "$HOSTOS" == 'Linux' ]]; then
+    wget https://releases.hashicorp.com/terraform/${tf_version}/terraform_${tf_version}_linux_amd64.zip
+  elif [[ "$HOSTOS" == 'Darwin' ]]; then
+    wget https://releases.hashicorp.com/terraform/${tf_version}/terraform_${tf_version}_darwin_amd64.zip
+  fi
+  unzip -o terraform*.zip
+  rm -f terraform*.zip
+  export PATH=$PATH:`pwd`
+fi
+
+ # Install awscli for the AWS provider
+if [[ "$HOSTOS" == 'Linux' ]]; then
+  # Install EPEL package and enable the repo
+  sudo yum install –y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+  sudo yum-config-manager --enable rhui-REGION-rhel-server-optional
+  sudo yum install -y awscli || sudo dnf install -y awscli
+  # Commented the Pip way of installing the awscli. It can be used for future
+  #curl -O https://bootstrap.pypa.io/get-pip.py;python get-pip.py --user;export PATH=~/.local/bin:$PATH;source ~/.bash_profile;pip install awscli --upgrade --user
+elif [[ "$HOSTOS" == 'Darwin' ]]; then
+  brew install awscli
+fi
+
+# Initialize awscli
+aws configure
+
+echo "Setup Complete"
+echo "Make sure to add the following entry to your path for the terraform binary: "
+echo $PWD

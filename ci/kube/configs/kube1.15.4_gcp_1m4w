@@ -1,0 +1,13 @@
+cluster_provider = "gcp"
+cluster_masters = "1"
+cluster_workers = "4"
+cluster_prefix = "ci"
+cluster_manager = "kube"
+cluster_manager_version = "1.15.4"
+cluster_docker_version = "os"
+cluster_project_name="eng-dev"
+# generate from https://console.cloud.google.com/apis/credentials/serviceaccountkey
+# select service account: Compute Engine default service account
+# JSON format
+cluster_account_file_path="<path_to_file>"
+# i.e: "~/gocode/src/github.com/blackducksoftware/example-serviceaccount.json"

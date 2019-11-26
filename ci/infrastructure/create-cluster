@@ -1,0 +1,45 @@
+#!/bin/bash
+
+DIR="${BASH_SOURCE%/*}"
+if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
+CONFIG=$1
+PROVIDER=`grep -e "cluster_provider\s*=" ${CONFIG} | grep -v ^# |  cut -d '=' -f 2 | tr -d '"' | tr -d '[:space:]'`
+
+which terraform > /dev/null
+if [ $? -ne 0 ]
+then
+  TF="${DIR}/terraform"
+else
+  TF="terraform"
+fi
+
+# Create the current-config symlink pointing to the config specified
+if [ -f current-config ]
+then
+  echo "Error: current-config symlink already exists.  Shut down the running cluster first"
+  exit 1
+else
+  ln -s $CONFIG current-config
+fi
+
+# Create the symlink for the specific provider module
+pushd modules/provider
+  if [ `echo -n ${PROVIDER} | wc -c` -gt 0 ]
+  then
+    if [ -f main.tf ]
+    then
+      echo "Warning: main.tf already exists.  Shut down the running cluster first"
+      exit 1
+    else
+      ln -s config/${PROVIDER}.tf main.tf
+    fi
+  else
+   ln -s config/none.tf main.tf
+  fi
+popd
+
+# Initialize terraform
+$TF init -var-file=$CONFIG
+
+# Launch the cluster
+$TF apply -auto-approve -var-file=$CONFIG

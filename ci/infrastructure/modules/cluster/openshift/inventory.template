@@ -1,0 +1,58 @@
+# Create an OSEv3 group that contains the masters and nodes groups
+[OSEv3:children]
+masters
+nodes
+etcd
+#lb
+nfs
+
+# Set variables common for all OSEv3 hosts
+[OSEv3:vars]
+# SSH user, this user should allow ssh based auth without requiring a password
+ansible_ssh_user=${ssh_user}
+
+# If ansible_ssh_user is not root, ansible_become must be set to true
+ansible_become=true
+
+# Deploy OpenShift origin.
+deployment_type=origin
+openshift_release="${cluster_version}"
+
+openshift_public_hostname=${public_hostname}
+openshift_master_default_subdomain=${master_default_subdomain}
+
+openshift_hosted_etcd_storage_kind=nfs
+openshift_hosted_etcd_storage_nfs_options="*(rw,root_squash,sync,no_wdelay)"
+openshift_hosted_etcd_storage_nfs_directory=/opt/osev3-etcd
+openshift_hosted_etcd_storage_volume_name=etcd-vol2
+openshift_hosted_etcd_storage_access_modes=["ReadWriteOnce"]
+openshift_hosted_etcd_storage_volume_size=1G
+openshift_hosted_etcd_storage_labels={'storage': 'etcd'}
+
+ansible_service_broker_image_prefix=openshift/
+ansible_service_broker_registry_url="registry.access.redhat.com"
+
+# Use an htpasswd file as the indentity provider.
+openshift_master_identity_providers=[{'name': 'allow_all', 'login': 'true', 'challenge': 'true', 'mappingMethod': 'claim', 'kind': 'AllowAllPasswordIdentityProvider'} ${htpasswd_provider}]
+openshift_master_htpasswd_users={'admin': 'admin'}
+
+openshift_hosted_metrics_deploy=false
+openshift_metrics_install_metrics=false
+use_cluster_metrics=false
+
+openshift_clock_enabled=true
+${disk_minimum_override}
+
+[masters]
+${master_hosts}
+
+[etcd]
+${etcd_hosts}
+
+[nfs]
+${master_hosts}
+
+[nodes]
+${master_nodes}
+${worker_nodes}
+

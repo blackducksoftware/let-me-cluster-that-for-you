@@ -1,0 +1,19 @@
+#!/bin/bash
+
+DIR="${BASH_SOURCE%/*}"
+if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
+
+command -v terraform > /dev/null
+if [ $? -ne 0 ] 
+then
+  TF="${DIR}/terraform"
+else
+  TF="terraform"
+fi
+
+$TF output "$1"
+if [[ $? -gt 0 ]] ; then
+	echo "Terraform output for $1 doesnt exist !!!!!!!!!! here are the values"
+	$TF output
+	echo "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ select a valid output and try again!"
+fi 

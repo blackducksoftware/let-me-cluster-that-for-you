@@ -30,7 +30,7 @@ KUBERNETES_VERSION="1.15.4"
 # INGRESS=NGINX_INGRESS
 # WORKER_IMAGE="c4.2xlarge"
 
-main_work_dir="/kippernetes"
+main_work_dir="/lmctfy"
 ci_kube_path="${main_work_dir}/ci/kube"
 ci_configs_path="${ci_kube_path}/configs"
 

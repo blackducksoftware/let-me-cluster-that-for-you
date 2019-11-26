@@ -39,7 +39,7 @@ FROM google/cloud-sdk:272.0.0-alpine as gcloud-builder
 #  gcloud config set metrics/environment github_docker_image && \
 #  gcloud --version
 
-# TERRAFORM-KIPPERNETES STUFF (base image here: https://hub.docker.com/r/hashicorp/terraform/tags?page=1&name=0.11)
+# TERRAFORM (base image here: https://hub.docker.com/r/hashicorp/terraform/tags?page=1&name=0.11)
 FROM hashicorp/terraform:0.11.14
 
 # upstream alpine packages can be found here: https://pkgs.alpinelinux.org/packages?name=python3&branch=v3.9&repo=main&arch=x86_64
@@ -74,17 +74,22 @@ RUN curl --fail --silent --show-error -O https://amazon-eks.s3-us-west-2.amazona
 
 LABEL maintainer="Yash Bhutwala"
 
-# copy only the stuff you need
-COPY ./ci/infrastructure /kippernetes/ci/infrastructure
-COPY ./ci/kube /kippernetes/ci/kube
-COPY ./k8s-addons /kippernetes/k8s-addons
+# copy only the stuff we need
+# these are needed for terraform
+COPY ./ci/infrastructure /lmctfy/ci/infrastructure
+COPY ./ci/kube /lmctfy/ci/kube
+# these are for cluster setup
+COPY ./end-to-end /lmctfy/end-to-end
+COPY ./k8s-addons /lmctfy/k8s-addons
+# this one is for database
+COPY ./database /lmctfy/database
 
 # TODO: still need to port these from kippernetes
 # not needed right now, but will add at some point
 #COPY ./ci/openshift /kippernetes/ci/openshift
 #COPY ./ci/swarm /kippernetes/ci/swarm
 
-WORKDIR /kippernetes
+WORKDIR /lmctfy
 
 ENTRYPOINT []
 # CMD ["sh", ""]

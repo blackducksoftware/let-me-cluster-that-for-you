@@ -49,7 +49,9 @@ RUN apk update
 # need bash and jq for our scripts
 RUN apk add --no-cache python3=3.6.9-r2 \
                         bash=4.4.19-r1 \
-                        jq=1.6-r0
+                        jq=1.6-r0 \ 
+                        gettext \
+                        libintl
 # in case you need tar
 #                        tar=1.32-r0
 

@@ -2,7 +2,7 @@
 
 # HOW TO RUN:
 # ./end-to-end-cluster.sh [CLOUD_PROVIDER] [NAME] [CLUSTER_KUBERNETES_VERSION] [CLUSTER_REGION] [CLUSTER_ZONE]
-# i.e: ./end-to-end-cluster.sh example_cluster_name examplemaster examplemasterpassword AWS RDS
+# i.e: ./end-to-end-cluster.sh aws example_cluster_name 1.16.0 us-east1 us-east1-a
 
 # [TODO: make the interface be this]
 # ./end-to-end-cluster.sh [CLOUD_PROVIDER] [NAME] [CLUSTER_KUBERNETES_VERSION] [CLUSTER_REGION] [CLUSTER_ZONE] [STORAGE_PROVISIONER] [INGRESS]
@@ -18,7 +18,7 @@ set -xv
 # arguments currently being accepted
 # required arguments
 CLOUD_PROVIDER=${1}
-export DB_PROVIDER=${4}
+export DB_PROVIDER=${4:-}
 # optional arguments
 export MASTER_USERNAME=${4:-none}
 export MASTER_USER_PASSWORD=${6:-none}
@@ -39,7 +39,7 @@ if [[ "${CLOUD_PROVIDER}" == "AWS" ]]; then
   export PROVIDER=aws
   export NAME=${2}
   export KUBERNETES_VERSION="${3:-1.15.4}"
-  export CLUSTER_REGION="${4}"
+  export CLUSTER_REGION="${4:-}"
   export AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}"
   export AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}"
   export AWS_DEFAULT_REGION="${CLUSTER_REGION}"
@@ -48,8 +48,8 @@ elif [[ "${CLOUD_PROVIDER}" == "GCP" ]]; then
   export PROVIDER=gcp
   export NAME=${2}
   export KUBERNETES_VERSION="${3:-1.15.4}"
-  export CLUSTER_REGION=${4}
-  export CLUSTER_ZONE=${5}
+  export CLUSTER_REGION=${4:-}
+  export CLUSTER_ZONE=${5:-}
 elif [[ "${CLOUD_PROVIDER}" == "EKS" ]]; then
   #ci_source_config_filename="kube1.14_eks_1m4w"
   export PROVIDER=eks

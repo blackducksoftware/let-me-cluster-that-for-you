@@ -3,12 +3,13 @@
 # HOW TO RUN:
 # ./end-to-end-cluster.sh [CLOUD_PROVIDER] [NAME] [CLUSTER_KUBERNETES_VERSION] [CLUSTER_REGION] [CLUSTER_ZONE]
 # i.e: ./end-to-end-cluster.sh aws example_cluster_name 1.16.0 us-east1 us-east1-a
+#For AWS we need to mount .aws folder to root or export AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY values
+
 
 # [TODO: make the interface be this]
 # ./end-to-end-cluster.sh [CLOUD_PROVIDER] [NAME] [CLUSTER_KUBERNETES_VERSION] [CLUSTER_REGION] [CLUSTER_ZONE] [STORAGE_PROVISIONER] [INGRESS]
 # [TODO: maybe database creation should be separate stage in the pipeline]
 # [DB_PROVIDER] [MASTER_USERNAME] [MASTER_USER_PASSWORD]
-
 
 # https://news.ycombinator.com/item?id=10736584
 set -o errexit -o nounset -o pipefail
@@ -18,11 +19,6 @@ set -xv
 # arguments currently being accepted
 # required arguments
 CLOUD_PROVIDER=${1}
-export DB_PROVIDER=${4:-}
-# optional arguments
-export MASTER_USERNAME=${4:-none}
-export MASTER_USER_PASSWORD=${6:-none}
-
 # static parameters that may be should be taken as arguments
 # STORAGE_PROVISIONER=LOCAL_PATH_PROVISIONER
 # INGRESS=NGINX_INGRESS
@@ -40,8 +36,8 @@ if [[ "${CLOUD_PROVIDER}" == "AWS" ]]; then
   export NAME=${2}
   export KUBERNETES_VERSION="${3:-1.15.4}"
   export CLUSTER_REGION="${4:-}"
-  export AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID}"
-  export AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY}"
+  export AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID:-}"
+  export AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY:-}"
   export AWS_DEFAULT_REGION="${CLUSTER_REGION}"
 elif [[ "${CLOUD_PROVIDER}" == "GCP" ]]; then
   #ci_source_config_filename="kube1.15.4_gcp_1m4w"
@@ -98,15 +94,3 @@ cd "${addons_dir}/ingress/using-helm-v3" && ./download-ingress.sh
 # Download storage
 # TODO: if managed kubernetes, don't create a dynamic provisioner
 cd "${addons_dir}/storage/external-storage/local-volume/local-path-provisioner" && ./install-local-path-provisioner.sh
-
-# DATABASE CREATION NOW
-# TODO: pull out database part out of this script
-# cases for different providers
-if [[ "${DB_PROVIDER}" == "RDS" ]]; then
-  printf "Creating a RDS Database with name: %s" "${NAME}"
-  cd "${main_work_dir}/database" && ./create-aws-rds.sh "${NAME}" "${MASTER_USERNAME}" "${MASTER_USER_PASSWORD}"
-elif [[ "${DB_PROVIDER}" == "NONE" ]]; then
-  printf "Not creating a Database as requested"
-else
-  printf "Don't know this database option"
-fi

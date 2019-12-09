@@ -39,6 +39,7 @@ if [[ "${CLOUD_PROVIDER}" == "AWS" ]]; then
   export AWS_ACCESS_KEY_ID="${AWS_ACCESS_KEY_ID:-}"
   export AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY:-}"
   export AWS_DEFAULT_REGION="${CLUSTER_REGION}"
+  export INSTANCE_TYPE="${INSTANCE_TYPE:-c4.2xlarge}"
 elif [[ "${CLOUD_PROVIDER}" == "GCP" ]]; then
   #ci_source_config_filename="kube1.15.4_gcp_1m4w"
   export PROVIDER=gcp
@@ -46,12 +47,16 @@ elif [[ "${CLOUD_PROVIDER}" == "GCP" ]]; then
   export KUBERNETES_VERSION="${3:-1.15.4}"
   export CLUSTER_REGION=${4:-}
   export CLUSTER_ZONE=${5:-}
+  export INSTANCE_TYPE="${INSTANCE_TYPE:-}"
+  export GCP_PROJECT="${GCP_PROJECT}"
+  export GCP_JSON_PATH=${GCP_JSON_PATH}
 elif [[ "${CLOUD_PROVIDER}" == "EKS" ]]; then
   #ci_source_config_filename="kube1.14_eks_1m4w"
   export PROVIDER=eks
   export NAME=${2}
   export KUBERNETES_VERSION="${3:-1.15.4}"
   export CLUSTER_REGION=${4}
+  export INSTANCE_TYPE="${INSTANCE_TYPE:-c4.2xlarge}"
 elif [[ "${CLOUD_PROVIDER}" == "DC1" ]]; then
   #ci_source_config_filename="kube1.15.4_vsphere_1m4w"
   export PROVIDER=dc1

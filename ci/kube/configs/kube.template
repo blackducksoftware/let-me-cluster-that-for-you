@@ -5,11 +5,12 @@ cluster_prefix = "ci"
 cluster_manager = "kube"
 cluster_manager_version = "${KUBERNETES_VERSION}"
 cluster_docker_version = "os"
-cluster_worker_image = "c4.2xlarge"
+cluster_worker_image = "${INSTANCE_TYPE}"
 cluster_region = "${CLUSTER_REGION}"
 cluster_zone = "${CLUSTER_ZONE}"
+cluster_project_name="${GCP_PROJECT}"
 # generate from https://console.cloud.google.com/apis/credentials/serviceaccountkey
 # select service account: Compute Engine default service account
 # JSON format
-cluster_account_file_path="<path_to_file>"
+cluster_account_file_path="${GCP_JSON_PATH}"
 # i.e: "~/gocode/src/github.com/blackducksoftware/example-serviceaccount.json"

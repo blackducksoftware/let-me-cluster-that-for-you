@@ -29,7 +29,7 @@ ci_kube_path="${main_work_dir}/ci/kube"
 ci_configs_path="${ci_kube_path}/configs"
 
 # Step 1: figure out which config we are going to be using
-# cases for different provider
+# cases for different providers
 if [[ "${CLOUD_PROVIDER}" == "AWS" ]]; then
   #ci_source_config_filename="kube1.15.4_aws_1m4w"
   export PROVIDER=aws

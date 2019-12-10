@@ -1,9 +1,7 @@
 # HOW TO RUN:
 #For RDS 
-# ./create-db.sh [DB_PROVIDER] [NAME] [DB_REGION]
-# i.e: ./create-db.sh rds example_cluster_name postgres postgres
-# For cloudsql db
-# ./create-db.sh [DB_PROVIDER] [NAME] [DB_REGION] 
+# ./delete-db.sh [DB_PROVIDER] [NAME] [DB_REGION]
+# i.e: ./delete-db.sh RDS example us-east-1|us-east1
 
 set -o errexit -o nounset -o pipefail
 # this line enables debugging
@@ -23,7 +21,7 @@ if [[ "${DB_PROVIDER}" == "RDS" ]]; then
   export AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY:-}"
   export AWS_DEFAULT_REGION="${DB_REGION}"
   cd "${main_work_dir}/database" && ./delete-aws-rds.sh "${NAME}"
-elif [[ "${DB_PROVIDER}" == "CLOUDQL" ]]; then
+elif [[ "${DB_PROVIDER}" == "CLOUDSQL" ]]; then
   printf "Creating a CLOUDSQL Database with name: %s" "${NAME}"
   DB_REGION=${3:-us-east1}
   cd "${main_work_dir}/database" && ./delete-cloudsql-db.sh "${NAME}" "${DB_REGION}"

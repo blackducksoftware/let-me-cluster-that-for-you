@@ -17,7 +17,7 @@ resource "null_resource" "kubernetes-install-master" {
   provisioner "remote-exec" {
     inline = [
       "sudo kubeadm init --ignore-preflight-errors=swap,cri --apiserver-bind-port ${local.master_port} --kubernetes-version ${var.kube_version} --token `cat kubernetes.token` --pod-network-cidr=192.168.0.0/16 --apiserver-cert-extra-sans=${join(",", concat(var.master_public_ips, var.master_public_dns_names))}",
-      "${local.pod_network_112_plus == "true" ? "sudo KUBECONFIG=/etc/kubernetes/admin.conf kubectl apply -f https://docs.projectcalico.org/v${local.kube_calico_version}/manifests/calico.yaml" : "sudo KUBECONFIG=/etc/kubernetes/admin.conf kubectl apply -f https://docs.projectcalico.org/v3.0/getting-started/kubernetes/installation/hosted/kubeadm/1.7/calico.yaml"}",
+      "${local.pod_network_112_plus == "true" ? "sudo KUBECONFIG=/etc/kubernetes/admin.conf kubectl apply -f https://docs.projectcalico.org/v${local.kube_calico_version}/manifests/calico.yaml" : "sudo KUBECONFIG=/etc/kubernetes/admin.conf kubectl apply -f https://docs.projectcalico.org/v3.9/manifests/calico.yaml"}",
       "mkdir -p $HOME/.kube",
       "sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config",
       "sudo chown $(id -u):$(id -g) $HOME/.kube/config",

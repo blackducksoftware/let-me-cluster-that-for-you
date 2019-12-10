@@ -1,8 +1,6 @@
 # HOW TO RUN:
 # ./create-db.sh [DB_PROVIDER] [NAME] [MASTER_USERNAME] [MASTER_USER_PASSWORD] [DB_REGION]
 # i.e: ./create-db.sh rds example_cluster_name postgres postgres
-# For cloudsql db
-# ./create-db.sh [DB_PROVIDER] [NAME] [MASTER_USERNAME] [MASTER_USER_PASSWORD] [DB_REGION] 
 
 
 # DATABASE CREATION NOW
@@ -28,7 +26,7 @@ if [[ "${DB_PROVIDER}" == "RDS" ]]; then
   export AWS_SECRET_ACCESS_KEY="${AWS_SECRET_ACCESS_KEY:-}"
   export AWS_DEFAULT_REGION="${DB_REGION}"
   cd "${main_work_dir}/database" && ./create-aws-rds.sh "${NAME}" "${MASTER_USERNAME}" "${MASTER_USER_PASSWORD}"
-elif [[ "${DB_PROVIDER}" == "CLOUDQL" ]]; then
+elif [[ "${DB_PROVIDER}" == "CLOUDSQL" ]]; then
   printf "Creating a CLOUDSQL Database with name: %s" "${NAME}"
   DB_REGION=${5:-us-east1}
   cd "${main_work_dir}/database" && ./create-cloudsql-db.sh "${NAME}" "${MASTER_USER_PASSWORD}" "${DB_REGION}"

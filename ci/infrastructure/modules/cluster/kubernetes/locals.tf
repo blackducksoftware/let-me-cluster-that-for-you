@@ -4,7 +4,7 @@ locals {
   major_version = "${join(".", slice(split(".", local.converted_version), 0, 2))}"
   major_minor = "${split(".", local.major_version)}"
   pod_network_112_plus = "${local.major_minor[0] == 1 && local.major_minor[1] > 11 ? "true" : "false"}"
-  kube_calico_version = "${local.major_minor[1] > 11 ? "3.10":"3.9"}"
+  kube_calico_version = "3.10"
   systemd_system_root = "${local.major_minor[0] <= 1 && local.major_minor[1] < 14 ? "/etc" : "/usr/lib"}"
 }
 

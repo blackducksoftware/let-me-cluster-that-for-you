@@ -77,7 +77,7 @@ now="$(date +%s)" ## (Displays nanoseconds)
 ci_destination_config_path="${ci_configs_path}/${now}_${NAME}_${ci_source_config_filename}"
 
 # replace the config with name and version
-sed "s/ci/${now}-${NAME}-ci/g" "${ci_source_config_path}" > "${ci_destination_config_path}"
+sed "s/ci/${NAME}-${now}-ci/g" "${ci_source_config_path}" > "${ci_destination_config_path}"
 
 # replace where terraform stuff is stored (-i option edits in place, without the .bak the command will fail on some platforms, such as Mac OSX)
 sed -i.bak "s/infra/${NAME}/g" "${ci_kube_path}/cluster.sh"

@@ -50,8 +50,8 @@ RUN apk update
 RUN apk add --no-cache python3=3.6.9-r2 \
                         bash=4.4.19-r1 \
                         jq=1.6-r0 \ 
-                        gettext \
-                        libintl
+                        gettext=0.19.8.1-r4 \
+                        libintl=0.19.8.1-r4	
 # in case you need tar
 #                        tar=1.32-r0
 

@@ -4,7 +4,7 @@ locals {
   bastion_image_size = "${length(var.gp_bastion_image) > 0 ? "${var.gp_bastion_image}" : "g1-small"}"
   gcp_project_name = "${length(var.gp_project_name) > 0 ? "${var.gp_project_name}" : ""}"
   gcp_region =  "${length(var.gp_region) > 0 ? "${var.gp_region}" : "us-east1"}"
-  gcp_zone   =  "${length(var.gp_zone) > 0 ?  "${var.gp_zone}" : "us-east1-b"}"
+  gcp_zone   =  "${length(var.gp_zone) > 0 ?  "${var.gp_zone}" : "${local.gcp_region}-b"}"
   vpc_cidr = "${length(var.gp_vpc_cidr) > 0 ? "${var.gp_vpc_cidr}" : "10.0.0.0/16"}"
   subnet_cidr = "${cidrsubnet(local.vpc_cidr, 8, 1)}"
   gcp_master_extra_disk_size_gb = "${length(var.gp_master_extra_disk_size_gb) > 0 ? "${var.gp_master_extra_disk_size_gb}" : "80" }"

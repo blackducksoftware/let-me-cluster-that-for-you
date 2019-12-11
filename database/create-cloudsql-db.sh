@@ -19,17 +19,18 @@ set -xv
 # required arguments
 DATABASE_NAME=${1}
 MASTER_USER_PASSWORD=${2}
+DB_REGION=${3}
 
 # static parameters that may be taken as arguments
-POSTGRESQL_VERSION=${3:-POSTGRES_9_6}
-DB_SIZE_IN_GB=${4:-10}  #gcloud cloudsql, auto storage size increase is enabled by default
-STORAGE_TYPE=${5:-SSD}
-CPU=${6:-4}
-MEMORY=${7:-15360MiB}
+POSTGRESQL_VERSION=${4:-POSTGRES_9_6}
+DB_SIZE_IN_GB=${5:-10}  #gcloud cloudsql, auto storage size increase is enabled by default
+STORAGE_TYPE=${6:-SSD}
+CPU=${7:-4}
+MEMORY=${8:-15360MiB}
 
 # create db
 gcloud sql instances create "$DATABASE_NAME" --database-version="$POSTGRESQL_VERSION" --storage-size="$DB_SIZE_IN_GB" \
-  --region="us-east1" --cpu="$CPU" --memory="$MEMORY" --storage-type="$STORAGE_TYPE"
+  --region="${DB_REGION}" --cpu="$CPU" --memory="$MEMORY" --storage-type="$STORAGE_TYPE"
 # TODO: restrict it to VPC network, look at these flags
 #  --network
 #  --authorized-networks

@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # HOW TO RUN:
-# ./delete-aws-rds.sh [DATABASE_NAME]
-# i.e: ./delete-aws-rds.sh yash-db
+# ./delete-aws-rds.sh [DATABASE_NAME] [REGION]
+# i.e: ./delete-aws-rds.sh yash-db 
 
 # [TODO: make the interface be this]
-# ./delete-aws-rds.sh [DATABASE_NAME] [SNAPSHOT]
+# ./delete-aws-rds.sh [DATABASE_NAME] [REGION] [SNAPSHOT]
 
 
 # https://news.ycombinator.com/item?id=10736584

@@ -28,6 +28,12 @@ main_work_dir="/lmctfy"
 ci_kube_path="${main_work_dir}/ci/kube"
 ci_configs_path="${ci_kube_path}/configs"
 
+# generate ssh keys for infrastructure provision
+PWD="$(pwd)"
+ssh-keygen -b 2048 -t rsa -f ${PWD}/id_rsa -q -N ""
+export PWD="${PWD}"
+#################
+
 # Step 1: figure out which config we are going to be using
 # cases for different providers
 if [[ "${CLOUD_PROVIDER}" == "AWS" ]]; then
@@ -99,3 +105,8 @@ cd "${addons_dir}/ingress/using-helm-v3" && ./download-ingress.sh
 # Download storage
 # TODO: if managed kubernetes, don't create a dynamic provisioner
 cd "${addons_dir}/storage/external-storage/local-volume/local-path-provisioner" && ./install-local-path-provisioner.sh
+
+### remove ssh keyfiles ###
+rm -rf ${PWD}/id_rsa
+rm -f ${PWD}/id_rsa.pub
+######

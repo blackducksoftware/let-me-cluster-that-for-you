@@ -1,0 +1,25 @@
+module "rds" {
+  source = "./rds"
+  is_enabled = "${var.is_enabled && var.cluster_db_provider_name == "rds" ? "true" : "false"}"
+  aws_rds_region = "${length(var.cluster_db_region) > 0 ? "${var.cluster_db_region}" : "us-east-1"}"
+  postgres_version = "${length(var.cluster_db_postgres_version) > 0 ? "${var.cluster_db_postgres_version}" : "9.6"}"
+  database_name = "${var.cluster_db_name}"
+  db_size_in_gb = "${length(var.cluster_db_size) > 0 ? "${var.cluster_db_size}" : "10" }"
+  db_instance_class = "${length(var.cluster_db_instance_class) > 0 ? "${var.cluster_db_instance_class}" : "db.m4.large" }"
+  master_username = "${length(var.cluster_db_username) > 0 ? "${var.cluster_db_username}" : "postgres" }"
+  master_user_password = "${length(var.cluster_db_password) > 0 ? "${var.cluster_db_password}" : "postgres" }"
+  db_snapshot = "${length(var.cluster_db_snapshot) > 0 ? "${var.cluster_db_snapshot}" : "false" }"
+  multi_az = "${length(var.cluster_db_multi_az) > 0 ? "${var.cluster_db_multi_az}" : "false" }"
+  db_parameter_group = ""
+  db_port = "5432"
+  db_create_timeout = "${length(var.cluster_db_create_timeout) > 0 ? "${var.cluster_db_create_timeout}" : "30" }"
+}
+#module "cloudsql" {
+#  source = "./cloudsql"
+#  is_enabled = "${var.is_enabled && var.cluster_db_provider_name == "cloudsql" ? "true" : "false"}"
+#  postgres_version = "${length(var.cluster_db_postgres_version) > 0 ? "${var.cluster_db_postgres_version}" : "POSTGRES_9_6"}"
+#  db_size_in_gb = "${length(var.cluster_db_size) > 0 ? "${var.cluster_db_size}" : "10" }"
+#  db_instance_class = "${length(var.cluster_db_instance_class) > 0 ? "${var.cluster_db_instance_class}" : "db.m4.large" }"
+#  master_username = "${length(var.cluster_db_username) > 0 ? "${var.cluster_db_username}" : "postgres" }"
+#  master_user_password = "${length(var.cluster_db_password) > 0 ? "${var.cluster_db_password}" : "postgres" }"
+#}

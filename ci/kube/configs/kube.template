@@ -14,3 +14,5 @@ cluster_project_name="${GCP_PROJECT}"
 # JSON format
 cluster_account_file_path="${GCP_JSON_PATH}"
 # i.e: "~/gocode/src/github.com/blackducksoftware/example-serviceaccount.json"
+cluster_public_key_path="${PWD}/id_rsa.pub"
+cluster_private_key_path="${PWD}/id_rsa"

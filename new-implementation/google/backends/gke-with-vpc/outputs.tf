@@ -1,3 +1,8 @@
+output "project_id" {
+  description = "The ID of the project in which resources will be provisioned"
+  value       = var.project_id
+}
+
 output "kubernetes_endpoint" {
   description = "The cluster endpoint"
   sensitive   = true

@@ -1,4 +1,7 @@
 module "gke" {
+  # Source:
+  # https://registry.terraform.io/modules/terraform-google-modules/kubernetes-engine/google/6.1.1
+  # https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/releases
   source  = "terraform-google-modules/kubernetes-engine/google"
   version = "~> 6.1.1"
 
@@ -14,8 +17,11 @@ module "gke" {
 }
 
 module "gcp-network" {
+  # Source:
+  # https://registry.terraform.io/modules/terraform-google-modules/network/google/2.0.0
+  # https://github.com/terraform-google-modules/terraform-google-network/releases
   source  = "terraform-google-modules/network/google"
-  version = "~> 1.4.3"
+  version = "~> 2.0.0"
 
   project_id   = var.project_id
   network_name = var.network

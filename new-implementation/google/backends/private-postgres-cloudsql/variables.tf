@@ -1,11 +1,11 @@
 variable "project_id" {
   description = "The ID of the project in which resources will be provisioned"
   type        = string
-  default     = "eng-dev"
 }
 
 variable "db_name" {
   description = "The name of the PostgreSQL Database instance"
+  type        = string
   default     = "example-postgres-private"
 }
 

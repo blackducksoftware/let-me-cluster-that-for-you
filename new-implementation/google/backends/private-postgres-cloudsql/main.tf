@@ -24,13 +24,22 @@ resource "random_id" "name" {
   byte_length = 2
 }
 
+locals {
+  /*
+    Random instance name needed because:
+    "You cannot reuse an instance name for up to a week after you have deleted an instance."
+    See https://cloud.google.com/sql/docs/mysql/delete-instance for details.
+  */
+  instance_name = "${var.db_name}-${random_id.name.hex}"
+}
+
 module "postgresql-db" {
   # https://registry.terraform.io/modules/GoogleCloudPlatform/sql-db/google/3.0.0
   # https://github.com/terraform-google-modules/terraform-google-sql-db/tree/v3.0.0/modules/postgresql
   source  = "GoogleCloudPlatform/sql-db/google//modules/postgresql"
   version = "3.0.0"
 
-  name             = "example-postgresql-${random_id.name.hex}"
+  name             = local.instance_name
   database_version = var.postgresql_version
   project_id       = var.project_id
   zone             = var.zone

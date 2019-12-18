@@ -1,20 +1,13 @@
-module "postgresql-db" {
-  source  = "../backends/cloudsql"
+module "custom_gke" {
+  source = "../backends/gke-with-vpc"
 
-  name             = "example-postgresql-${random_id.name.hex}"
-  database_version = var.postgresql_version
-  project_id       = var.project_id
-  zone             = var.zone
+  project_id = "eng-dev"
+}
 
-  ip_configuration = {
-    ipv4_enabled    = true
-    private_network = null
-    require_ssl     = true
-    authorized_networks = [
-      {
-        name  = var.network_name
-        value = google_compute_subnetwork.default.ip_cidr_range
-      },
-    ]
-  }
+
+module "custom_postgresql_db" {
+  source = "../backends/private-postgres-cloudsql"
+  project_id = "${module.custom_gke.project_id}"
+  network_name = "${module.custom_gke.network_name}"
+  db_name = "yash-postgresql"
 }

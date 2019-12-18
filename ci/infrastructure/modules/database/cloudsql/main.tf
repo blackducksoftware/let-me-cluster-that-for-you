@@ -25,10 +25,10 @@ resource "random_id" "name" {
 }
 
 module "postgresql-db" {
-  # https://registry.terraform.io/modules/GoogleCloudPlatform/sql-db/google/2.0.0
-  # https://github.com/terraform-google-modules/terraform-google-sql-db/tree/add13c3746692c3bdf926e377e1548d727c59d18/modules/postgresql
+  # https://registry.terraform.io/modules/GoogleCloudPlatform/sql-db/google/3.0.0
+  # https://github.com/terraform-google-modules/terraform-google-sql-db/tree/v3.0.0/modules/postgresql
   source  = "GoogleCloudPlatform/sql-db/google//modules/postgresql"
-  version = "2.0.0"
+  version = "3.0.0"
 
   name             = "example-postgresql-${random_id.name.hex}"
   database_version = var.postgresql_version

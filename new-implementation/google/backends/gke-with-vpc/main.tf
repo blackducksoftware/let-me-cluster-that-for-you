@@ -3,6 +3,13 @@ resource "random_id" "name" {
 }
 
 locals {
+  /*
+    Random instance name needed because:
+    "You cannot reuse an instance name for up to a week after you have deleted an instance."
+    See https://cloud.google.com/sql/docs/mysql/delete-instance for details.
+
+    https://github.com/terraform-google-modules/terraform-google-sql-db/blob/v3.0.0/examples/mysql-private/main.tf#L44
+  */
   random_network_name = "${var.network_name}-${random_id.name.hex}"
   # random_subnet_name = "${var.subnet_name}-${random_id.name.hex}"
   ip_range_pods_name     = "ip-range-pods"
@@ -59,7 +66,6 @@ module "gke" {
   ip_range_services      = local.ip_range_services_name
   create_service_account = false
 }
-
 
 data "google_client_config" "default" {
 }

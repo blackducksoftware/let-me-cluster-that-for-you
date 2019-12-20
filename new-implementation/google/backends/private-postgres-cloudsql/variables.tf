@@ -9,22 +9,44 @@ variable "db_name" {
   default     = "example-postgres-private"
 }
 
-variable "network_name" {
-  default = "psql-example"
-  type    = string
+variable "postgresql_version" {
+  description = "Version of the PostgreSQL Database instance"
+  type        = string
+  default     = "POSTGRES_9_6"
+}
+
+variable "tier" {
+  description = "The tier for the master instance."
+  type        = string
+  default     = "db-f1-micro"
+}
+
+variable "disk_size" {
+  description = "The disk size for the master instance."
+  type        = number
+  default     = 10
+}
+
+variable "disk_type" {
+  description = "The disk type for the master instance."
+  type        = string
+  default     = "PD_SSD"
 }
 
 variable "region" {
-  default = "us-central1"
-  type    = string
+  description = "The region of the Cloud SQL resources"
+  type        = string
+  default     = "us-east1"
 }
 
 variable "zone" {
-  default = "us-central1-b"
-  type    = string
+  description = "The zone for the master instance, it should be something like: `a`, `c`."
+  type        = string
+  default     = "a"
 }
 
-variable "postgresql_version" {
-  default = "POSTGRES_9_6"
-  type    = string
+variable "network_name" {
+  description = "Name of the VPC"
+  type        = string
+  default     = "psql-example"
 }

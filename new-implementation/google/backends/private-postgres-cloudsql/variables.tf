@@ -42,7 +42,7 @@ variable "region" {
 variable "zone" {
   description = "The zone for the master instance, it should be something like: `a`, `c`."
   type        = string
-  default     = "a"
+  default     = "c"
 }
 
 variable "network_name" {

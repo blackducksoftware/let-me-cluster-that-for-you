@@ -6,4 +6,4 @@ disk_size          = 10
 disk_type          = "PD_SSD"
 network_name       = "psql-example"
 region             = "us-east1"
-zone               = "a"
+zone               = "c"

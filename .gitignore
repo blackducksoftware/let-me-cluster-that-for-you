@@ -3,6 +3,7 @@
 *.code-workspace
 *.tfstate
 *.tfstate.backup
-*.tfvars
 tfplan
 **.DS_Store
+# Only disabling with understanding that we don't leak any private info
+# *.tfvars

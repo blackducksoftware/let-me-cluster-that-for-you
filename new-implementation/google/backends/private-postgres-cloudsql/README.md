@@ -2,7 +2,7 @@
 
 ## Sources
 
-[Release being used: GoogleCloudPlatform/sql-db/google/2.0.0](https://registry.terraform.io/modules/GoogleCloudPlatform/sql-db/google/2.0.0)
+[Release being used: GoogleCloudPlatform/sql-db/google/3.0.0](https://registry.terraform.io/modules/GoogleCloudPlatform/sql-db/google/3.0.0)
 [my-sql and postgres private](https://github.com/terraform-google-modules/terraform-google-sql-db/tree/add13c3746692c3bdf926e377e1548d727c59d18/examples/mysql-and-postgres-private)
 [postgresql submodule](https://github.com/terraform-google-modules/terraform-google-sql-db/tree/add13c3746692c3bdf926e377e1548d727c59d18/modules/postgresql)
 

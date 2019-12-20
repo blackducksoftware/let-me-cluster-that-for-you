@@ -1,0 +1,6 @@
+# project_id = ""
+cluster_name       = "yash"
+kubernetes_version = "latest"
+network_name       = "yash-network"
+subnet_name        = "yash-subnet"
+postgresql_version = "POSTGRES_9_6"

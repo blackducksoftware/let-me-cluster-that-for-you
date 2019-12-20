@@ -48,5 +48,11 @@ variable "zone" {
 variable "network_name" {
   description = "Name of the VPC"
   type        = string
-  default     = "psql-example"
+  default     = "psql-network"
+}
+
+variable "subnet_name" {
+  description = "The subnetwork created to host the cluster in"
+  type        = string
+  default     = "psql-subnet"
 }

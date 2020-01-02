@@ -13,7 +13,7 @@ module "custom_postgresql_db" {
   source = "../backends/private-postgres-cloudsql"
 
   ## outputs from GKE steps
-  project_id   = "${module.custom_gke.project_id}"
+  project_id   = var.project_id
   network_name = "${module.custom_gke.network_name}"
   region       = "${module.custom_gke.region}"
 

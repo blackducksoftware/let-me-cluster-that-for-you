@@ -11,17 +11,18 @@ locals {
   instance_name = "${var.db_name}-${random_id.name.hex}"
 }
 
-resource "google_compute_network" "default" {
-  project                 = var.project_id
-  name                    = var.network_name
-  auto_create_subnetworks = false
-}
+# resource "google_compute_network" "default" {
+#   project                 = var.project_id
+#   name                    = var.network_name
+#   auto_create_subnetworks = false
+# }
 
 resource "google_compute_subnetwork" "default" {
-  project                  = var.project_id
-  name                     = var.subnet_name
-  ip_cidr_range            = "10.127.0.0/20"
-  network                  = google_compute_network.default.self_link
+  project       = var.project_id
+  name          = var.subnet_name
+  ip_cidr_range = "10.127.0.0/20"
+  # network                  = google_compute_network.default.self_link
+  network                  = var.network_name
   region                   = var.region
   private_ip_google_access = true
 }
@@ -46,9 +47,10 @@ module "postgresql-db" {
     private_network = null
     require_ssl     = true
     authorized_networks = [
+      # TODO: FIX THIS
       {
-        name  = var.network_name
-        value = google_compute_subnetwork.default.ip_cidr_range
+        name  = "sample-gcp-health-checkers-range"
+        value = "130.211.0.0/28"
       },
     ]
   }

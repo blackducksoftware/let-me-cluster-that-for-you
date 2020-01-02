@@ -1,9 +1,15 @@
+# IDEs
 .idea/
-**.terraform/
 *.code-workspace
+
+# MacOS
+**.DS_Store
+
+# Terraform specific
+**.terraform/
 *.tfstate
 *.tfstate.backup
+*.terraform.tfstate.lock.info
 tfplan
-**.DS_Store
 # Only disabling with understanding that we don't leak any private info
 # *.tfvars

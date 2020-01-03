@@ -56,3 +56,14 @@ variable "subnet_name" {
   type        = string
   default     = "psql-subnet"
 }
+
+variable "authorized_networks" {
+  # https://github.com/terraform-google-modules/terraform-google-sql-db/issues/20
+  # https://cloud.google.com/sql/docs/mysql/configure-ip
+  description = "List of mapped public networks authorized to access to the instances. Default - short range of GCP health-checkers IPs"
+  type        = list(map(string))
+  default = [{
+    name  = "sample-gcp-health-checkers-range"
+    value = "130.211.0.0/28"
+  }]
+}

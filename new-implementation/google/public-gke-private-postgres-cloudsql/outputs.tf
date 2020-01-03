@@ -5,8 +5,8 @@ output "cluster_name" {
 
 output "kubernetes_endpoint" {
   description = "The cluster endpoint"
-  sensitive   = true
-  value       = module.custom_gke.kubernetes_endpoint
+  # sensitive   = true
+  value = module.custom_gke.kubernetes_endpoint
 }
 
 output "network_name" {
@@ -21,8 +21,8 @@ output "subnet_name" {
 
 output "client_token" {
   description = "The bearer token for auth"
-  sensitive   = true
-  value       = module.custom_gke.client_token
+  # sensitive   = true
+  value = module.custom_gke.client_token
 }
 
 output "ca_certificate" {
@@ -43,20 +43,24 @@ output "instance_name" {
 
 output "psql_conn" {
   description = "The connection name of the master instance to be used in connection strings"
+  # sensitive   = true
   value       = module.custom_postgresql_db.psql_conn
 }
 
 output "psql_user_pass" {
   description = "The password for the default user. If not set, a random one will be generated and available in the generated_user_password output variable."
+  # sensitive   = true
   value       = module.custom_postgresql_db.psql_user_pass
 }
 
 output "public_ip_address" {
   description = "The first public (PRIMARY) IPv4 address assigned for the master instance"
-  value       = module.custom_postgresql_db.public_ip_address
+  # sensitive   = true
+  value = module.custom_postgresql_db.public_ip_address
 }
 
 output "private_ip_address" {
   description = "The first private (PRIVATE) IPv4 address assigned for the master instance"
-  value       = module.custom_postgresql_db.private_ip_address
+  # sensitive   = true
+  value = module.custom_postgresql_db.private_ip_address
 }

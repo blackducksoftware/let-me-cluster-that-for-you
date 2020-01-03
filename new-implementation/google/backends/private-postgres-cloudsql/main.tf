@@ -46,13 +46,7 @@ module "postgresql-db" {
     ipv4_enabled    = true
     private_network = null
     require_ssl     = true
-    authorized_networks = [
-      # TODO: FIX THIS
-      {
-        name  = "sample-gcp-health-checkers-range"
-        value = "130.211.0.0/28"
-      },
-    ]
+    authorized_networks = var.authorized_networks
   }
 }
 

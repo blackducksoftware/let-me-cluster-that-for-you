@@ -34,7 +34,7 @@ sleep 1
 
 set -x
 terraform init
-TF_LOG_PATH="${HOME}/tf_apply.log" TF_LOG="TRACE" terraform apply -auto-approve -var-file=~/test.tfvars 
+TF_LOG_PATH="${HOME}/tf_apply.log" TF_LOG="TRACE" terraform apply -auto-approve -var-file=${HOME}/test.tfvars 
 set +x
 
 echo "Cool, hope all went well, here's a shell to mess around, details are in ${HOME}/tf_apply.log"
@@ -44,7 +44,7 @@ echo "Cool, here we go..."
 sleep 1
 
 set -x
-TF_LOG_PATH="${HOME}/tf_destroy.log" TF_LOG="TRACE" terraform destroy -auto-approve -var-file=~/test.tfvars 
+TF_LOG_PATH="${HOME}/tf_destroy.log" TF_LOG="TRACE" terraform destroy -auto-approve -var-file=${HOME}/test.tfvars 
 set +x
 
 popd

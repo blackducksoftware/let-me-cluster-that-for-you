@@ -7,9 +7,8 @@ pushd terraform-azurerm-aks
 
 echo "Hey, I was gonna write a bash script to do this, but whatever, you figure it out:"
 echo "1. You need terraform installed - https://www.terraform.io/downloads.html"
-echo "2. You _probably do not_ need azcli, as long as you have:"
-echo "    CLIENT_ID and CLIENT_SECRET defined in a tfvars file"
-echo "    (But maybe you do need it, I dunno)"
+echo "2. You need azcli installed:"
+echo "https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest"
 echo "3. Make a ~/test.tfvars and set the creds + cluster prefix"
 cat << 'EOF' > ~/test.tfvars
 kubernetes_version = "1.17.0"

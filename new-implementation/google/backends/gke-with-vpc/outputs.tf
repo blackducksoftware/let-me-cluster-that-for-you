@@ -9,13 +9,23 @@ output "region" {
 
 output "cluster_name" {
   description = "Cluster name"
-  value       = module.gke.name
+  value       = google_container_cluster.primary.name
 }
 
 output "kubernetes_endpoint" {
   description = "The cluster endpoint"
   sensitive   = true
-  value       = module.gke.endpoint
+  value       = google_container_cluster.primary.endpoint
+}
+
+output "node_version" {
+  description = "Version of Kubernetes"
+  value       = google_container_cluster.primary.node_version
+}
+
+output "kubeconfig_path" {
+  description = "Path to kubeconfig file"
+  value       = local_file.kubeconfig.filename
 }
 
 output "network_name" {
@@ -32,20 +42,3 @@ output "subnet_name" {
 #   description = "The secondary ranges associated with the subnet"
 #   value       = module.gcp-network.subnets_secondary_ranges
 # }
-
-output "client_token" {
-  description = "The bearer token for auth"
-  sensitive   = true
-  value       = base64encode(data.google_client_config.default.access_token)
-}
-
-output "ca_certificate" {
-  description = "The cluster ca certificate (base64 encoded)"
-  value       = module.gke.ca_certificate
-}
-
-output "service_account" {
-  description = "The default service account used for running nodes."
-  value       = module.gke.service_account
-}
-

@@ -5,5 +5,7 @@ terraform {
     null       = "~> 2.1"
     random     = "~> 2.2"
     kubernetes = "~> 1.10"
+    local      = "~> 1.4"
+    template   = "~> 2.1"
   }
 }

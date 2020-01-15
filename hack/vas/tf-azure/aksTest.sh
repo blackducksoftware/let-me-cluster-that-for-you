@@ -9,6 +9,14 @@ echo "Hey, I was gonna write a bash script to do this, but whatever, you figure 
 echo "1. You need terraform installed - https://www.terraform.io/downloads.html"
 echo "2. You need azcli installed:"
 echo "https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest"
+echo "3. You need a ~servicePrincipal.json file, probably ask vasiliy for his"
+echo "Here's a shell, you do whatever you need to get all that ^^^ and then ^D"
+echo ""
+bash
+terraform version
+echo "Cool, gonna set some parameters"
+
+
 echo "3. Make a ~/test.tfvars and set the creds + cluster prefix"
 cat << 'EOF' > ~/test.tfvars
 kubernetes_version = "1.17.0"
@@ -27,7 +35,6 @@ echo "}"
 echo
 echo "Here's a shell, you do whatever you need to get all that ^^^ and then ^D"
 bash
-terraform version
 echo "Cool, here we go..."
 sleep 1
 

@@ -32,8 +32,10 @@ data "google_compute_network" "my-network" {
 # }
 
 module "private-service-access" {
-  source      = "GoogleCloudPlatform/sql-db/google//modules/private_service_access"
-  project_id  = var.project_id
+  source  = "GoogleCloudPlatform/sql-db/google//modules/private_service_access"
+  version = "3.0.0"
+
+  project_id = var.project_id
   # vpc_network = module.gcp-network.network_name
   vpc_network = "${data.google_compute_network.my-network.name}"
 }
@@ -54,9 +56,9 @@ module "postgresql-db" {
   zone             = var.zone
 
   ip_configuration = {
-    ipv4_enabled = false
-    private_network = "projects/${var.project_id}/global/networks/${data.google_compute_network.my-network.name}"
-    require_ssl     = true
+    ipv4_enabled        = false
+    private_network     = "projects/${var.project_id}/global/networks/${data.google_compute_network.my-network.name}"
+    require_ssl         = false
     authorized_networks = []
   }
 

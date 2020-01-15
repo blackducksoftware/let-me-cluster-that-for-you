@@ -23,8 +23,15 @@ variable "region" {
 
 variable "initial_node_count" {
   type        = number
-  description = "The number of nodes to create in this cluster's default node pool."
-  default     = 3
+  description = "The number of nodes to create in this cluster's default node pool per zone/region."
+  default     = 1
+}
+
+variable "machine_type" {
+  # https://cloud.google.com/compute/docs/reference/rest/v1/instances#machineType
+  type        = string
+  description = "The name of a Google Compute Engine machine type."
+  default     = "n1-standard-4"
 }
 
 ##########

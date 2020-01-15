@@ -1,7 +1,7 @@
 # project_id = ""
-cluster_name       = "gke-on-vpc-cluster"
+cluster_name       = "yash-vpc-cluster"
 kubernetes_version = "latest"
 region             = "us-east1"
 ##########
-network_name = "gke-network"
-subnet_name  = "gke-subnet"
+network_name = "yash-network"
+subnet_name  = "yash-subnet"

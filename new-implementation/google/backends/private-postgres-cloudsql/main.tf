@@ -11,20 +11,31 @@ locals {
   instance_name = "${var.db_name}-${random_id.name.hex}"
 }
 
-# resource "google_compute_network" "default" {
-#   project                 = var.project_id
-#   name                    = var.network_name
-#   auto_create_subnetworks = false
+data "google_compute_network" "my-network" {
+  project = var.project_id
+  name    = var.network_name
+}
+
+// TODO: figure out why this does not work when combined with the gke module
+// errors with network already exists
+
+# module "gcp-network" {
+#   source  = "terraform-google-modules/network/google"
+#   version = "~> 2.0.1"
+
+#   project_id   = var.project_id
+#   network_name = "${"${data.google_compute_network.my-network.self_link}" != null ? "${data.google_compute_network.my-network.name}" : var.network_name}"
+
+#   # network_name = "${"${data.google_compute_network.my-network.self_link}" != null ? "projects/${var.project_id}/global/networks/${data.google_compute_network.my-network.name}" : var.network_name}"
+
+#   subnets = []
 # }
 
-resource "google_compute_subnetwork" "default" {
-  project       = var.project_id
-  name          = var.subnet_name
-  ip_cidr_range = "10.127.0.0/20"
-  # network                  = google_compute_network.default.self_link
-  network                  = var.network_name
-  region                   = var.region
-  private_ip_google_access = true
+module "private-service-access" {
+  source      = "GoogleCloudPlatform/sql-db/google//modules/private_service_access"
+  project_id  = var.project_id
+  # vpc_network = module.gcp-network.network_name
+  vpc_network = "${data.google_compute_network.my-network.name}"
 }
 
 module "postgresql-db" {
@@ -43,12 +54,12 @@ module "postgresql-db" {
   zone             = var.zone
 
   ip_configuration = {
-    ipv4_enabled    = true
-    private_network = null
+    ipv4_enabled = false
+    private_network = "projects/${var.project_id}/global/networks/${data.google_compute_network.my-network.name}"
     require_ssl     = true
-    authorized_networks = var.authorized_networks
+    authorized_networks = []
   }
-}
 
-data "google_client_config" "current" {
+  // Optional: used to enforce ordering in the creation of resources.
+  module_depends_on = [module.private-service-access.peering_completed]
 }

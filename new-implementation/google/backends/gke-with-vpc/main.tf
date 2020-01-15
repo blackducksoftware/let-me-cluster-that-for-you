@@ -26,6 +26,8 @@ module "gcp-network" {
   project_id   = var.project_id
   network_name = local.random_network_name
 
+  # subnets = []
+
   subnets = [
     {
       subnet_name   = var.subnet_name

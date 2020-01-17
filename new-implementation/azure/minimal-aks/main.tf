@@ -12,6 +12,7 @@ module "aks" {
   CLIENT_SECRET = var.CLIENT_SECRET
   prefix = var.prefix
   location = var.location
+  kubernetes_version = var.kubernetes_version
 }
 
 // resource "random_string" "suffix" {

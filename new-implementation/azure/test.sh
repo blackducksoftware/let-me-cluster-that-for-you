@@ -41,7 +41,7 @@ pushd minimal-aks/
 terraform init
 terraform plan    -var-file="$tfvFile"
 read -p "Hit enter to \`terraform apply\` or ^C"
-terraform apply   -var-file="$tfvFile"
+terraform apply   -var-file="$tfvFile" -auto-approve
 read -p "Hit enter to \`terraform destroy\` or ^C"
-terraform destroy -var-file="$tfvFile"
+terraform destroy -var-file="$tfvFile" -auto-approve
 

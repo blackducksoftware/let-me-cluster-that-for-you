@@ -1,4 +1,4 @@
-//local variables 
+//local variables
 
 locals {
   instance_create_timeout = "60"
@@ -34,7 +34,7 @@ resource "aws_key_pair" "keypair" {
 
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "2.6.0"
+  version = "~> 2.6.0"
 
   name                 = var.cluster_name
   cidr                 = "10.0.0.0/16"
@@ -58,7 +58,9 @@ provider "kubernetes" {
 }
 
 module "eks" {
-  source                         = "terraform-aws-modules/eks/aws"
+  source  = "terraform-aws-modules/eks/aws"
+  version = "~> 8.1"
+
   cluster_name                   = "${var.cluster_name}"
   cluster_version                = "${var.kubernetes_version}"
   subnets                        = "${module.vpc.public_subnets}"

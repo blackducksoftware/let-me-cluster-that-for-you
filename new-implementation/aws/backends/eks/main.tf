@@ -33,8 +33,10 @@ resource "aws_key_pair" "keypair" {
 }
 
 module "vpc" {
+  # https://github.com/terraform-aws-modules/terraform-aws-vpc/releases
+  # https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/2.22.0
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 2.6.0"
+  version = "~> 2.22.0"
 
   name                 = var.cluster_name
   cidr                 = "10.0.0.0/16"
@@ -47,6 +49,10 @@ module "vpc" {
   tags = {
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
   }
+}
+
+provider "aws" {
+  region  = var.region
 }
 
 provider "kubernetes" {

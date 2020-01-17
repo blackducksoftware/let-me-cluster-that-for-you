@@ -18,6 +18,10 @@ resource "aws_security_group_rule" "allow_postgres_rule" {
   source_security_group_id = var.security_groups
 }
 
+provider "aws" {
+  region  = var.region
+}
+
 # https://registry.terraform.io/modules/terraform-aws-modules/rds/aws/2.13.0
 module "db" {
   source  = "terraform-aws-modules/rds/aws"

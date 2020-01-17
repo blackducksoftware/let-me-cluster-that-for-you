@@ -38,10 +38,10 @@ read -p "Hit enter to continue to \`terraform plan\` or ^C"
 
 pushd minimal-aks/
 
-terraform init
-terraform plan    -var-file="$tfvFile"
+                                                    terraform init
+                                                    terraform plan    -var-file="$tfvFile"
 read -p "Hit enter to \`terraform apply\` or ^C"
-terraform apply   -var-file="$tfvFile" -auto-approve
+TF_LOG_PATH="${HOME}/tf_apply.log"   TF_LOG="TRACE" terraform apply   -var-file="$tfvFile" -auto-approve
 read -p "Hit enter to \`terraform destroy\` or ^C"
-terraform destroy -var-file="$tfvFile" -auto-approve
+TF_LOG_PATH="${HOME}/tf_destroy.log" TF_LOG="TRACE" terraform destroy -var-file="$tfvFile" -auto-approve
 

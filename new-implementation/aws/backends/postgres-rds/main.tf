@@ -10,11 +10,11 @@ resource "aws_security_group" "allow_postgres" {
 }
 
 resource "aws_security_group_rule" "allow_postgres_rule" {
-  type            = "ingress"
-  from_port       = 5432
-  to_port         = 5432
-  protocol        = "tcp"
-  security_group_id = aws_security_group.allow_postgres.id
+  type                     = "ingress"
+  from_port                = 5432
+  to_port                  = 5432
+  protocol                 = "tcp"
+  security_group_id        = aws_security_group.allow_postgres.id
   source_security_group_id = var.security_groups
 }
 
@@ -41,7 +41,7 @@ module "db" {
   password = var.db_password
   port     = "5432"
 
-  vpc_security_group_ids = [ "${aws_security_group.allow_postgres.id}" ]
+  vpc_security_group_ids = ["${aws_security_group.allow_postgres.id}"]
 
   maintenance_window = "Mon:00:00-Mon:03:00"
   backup_window      = "03:00-06:00"
@@ -60,7 +60,7 @@ module "db" {
 
   publicly_accessible = "false"
   # DB option group
-  family = "postgres{var.postgres_version}"
+  family               = "postgres{var.postgres_version}"
   major_engine_version = var.postgres_version
 
   # Snapshot name upon DB deletion

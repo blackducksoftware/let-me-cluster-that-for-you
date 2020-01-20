@@ -1,7 +1,7 @@
 # Run: "docker run --rm -i hadolint/hadolint < Dockerfile" to ensure best practices!
 
 # KUBECTL (base image here: https://hub.docker.com/r/lachlanevenson/k8s-kubectl/tags?page=1&name=v1.1)
-FROM lachlanevenson/k8s-kubectl:v1.16.3 as kubectl-builder
+FROM lachlanevenson/k8s-kubectl:v1.17.1 as kubectl-builder
 
 # alternative
 #RUN curl --fail --silent --show-error -O "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" && \
@@ -21,11 +21,11 @@ FROM lachlanevenson/k8s-kubectl:v1.16.3 as kubectl-builder
 #  mv "linux-amd64/helm" "/usr/local/bin/"
 
 # HELM V3 (base image here: https://hub.docker.com/r/lachlanevenson/k8s-helm/tags?page=1&name=3)
-FROM lachlanevenson/k8s-helm:v3.0.0 as helm-builder
+FROM lachlanevenson/k8s-helm:v3.0.2 as helm-builder
 
 
 # GCLOUD-CLI (base image here: https://hub.docker.com/r/google/cloud-sdk/tags?page=1&name=alpine)
-FROM google/cloud-sdk:272.0.0-alpine as gcloud-builder
+FROM google/cloud-sdk:276.0.0-alpine as gcloud-builder
 
 # alternative
 #ARG GCLOUD_SDK_VERSION="272.0.0"
@@ -49,9 +49,9 @@ RUN apk update
 # need bash and jq for our scripts
 RUN apk add --no-cache python3=3.6.9-r2 \
                         bash=4.4.19-r1 \
-                        jq=1.6-r0 \ 
+                        jq=1.6-r0 \
                         gettext=0.19.8.1-r4 \
-                        libintl=0.19.8.1-r4	
+                        libintl=0.19.8.1-r4
 # in case you need tar
 #                        tar=1.32-r0
 
@@ -62,8 +62,8 @@ COPY --from=gcloud-builder /google-cloud-sdk /google-cloud-sdk
 ENV PATH /google-cloud-sdk/bin:$PATH
 
 # AWSCLI
-# versions hosted here: https://pypi.org/project/awscli/1.16.291/#history
-ARG AWS_CLI_VERSION="1.16.291"
+# versions hosted here: https://pypi.org/project/awscli/1.17.5/#history
+ARG AWS_CLI_VERSION="1.17.5"
 RUN pip3 install --no-cache-dir awscli==${AWS_CLI_VERSION}
 
 # aws-iam-authenticator (link to latest here: https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)

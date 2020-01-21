@@ -1,0 +1,13 @@
+# IDEs
+.idea/
+*.code-workspace
+
+# MacOS
+**.DS_Store
+
+# Terraform specific
+**.terraform/
+*.tfstate
+*.tfstate.backup
+*.terraform.tfstate.lock.info
+tfplan

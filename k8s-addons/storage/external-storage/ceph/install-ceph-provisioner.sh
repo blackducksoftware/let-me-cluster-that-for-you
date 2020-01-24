@@ -6,11 +6,11 @@ set -o errexit -o nounset -o pipefail
 set -xv
 
 
-# Source: https://rook.io/docs/rook/v1.1/ceph-quickstart.html
-# Release 1.1
-ROOK_VERSION="release-1.1"
+# Source: https://rook.io/docs/rook/v1.2/ceph-quickstart.html
+# Releases: https://github.com/rook/rook/releases
+ROOK_VERSION=${1:-v1.2.2}
 
-# Source: https://rook.io/docs/rook/v1.1/ceph-examples.html
+# Source: https://rook.io/docs/rook/v1.2/ceph-examples.html
 # deploy common resources
 kubectl apply -f "https://raw.githubusercontent.com/rook/rook/${ROOK_VERSION}/cluster/examples/kubernetes/ceph/common.yaml"
 
@@ -29,7 +29,7 @@ kubectl -n rook-ceph get pod
 # TODO: make this configurable, right now ceph block works pretty well
 
 # CEPH BLOCK
-# Source: https://rook.io/docs/rook/v1.1/ceph-block.html
+# Source: https://rook.io/docs/rook/v1.2/ceph-block.html
 # use block storage
 kubectl apply -f "https://raw.githubusercontent.com/rook/rook/${ROOK_VERSION}/cluster/examples/kubernetes/ceph/csi/rbd/storageclass.yaml"
 # make it the default storageclass
@@ -41,8 +41,8 @@ kubectl apply -f "https://raw.githubusercontent.com/rook/rook/${ROOK_VERSION}/cl
 kubectl apply -f "https://raw.githubusercontent.com/rook/rook/${ROOK_VERSION}/cluster/examples/kubernetes/ceph/csi/rbd/pod.yaml"
 
 ## CEPH FILESYSTEM
-## Source: https://rook.io/docs/rook/v1.1/ceph-filesystem.html
-## create shared file system; source: https://rook.io/docs/rook/v1.1/ceph-filesystem-crd.html
+## Source: https://rook.io/docs/rook/v1.2/ceph-filesystem.html
+## create shared file system; source: https://rook.io/docs/rook/v1.2/ceph-filesystem-crd.html
 ## TODO: figure out which filesystem yaml to use here
 ##kubectl apply -f "https://raw.githubusercontent.com/rook/rook/${ROOK_VERSION}/cluster/examples/kubernetes/ceph/filesystem-ec.yaml"
 #kubectl apply -f "https://raw.githubusercontent.com/rook/rook/${ROOK_VERSION}/cluster/examples/kubernetes/ceph/filesystem-test.yaml"

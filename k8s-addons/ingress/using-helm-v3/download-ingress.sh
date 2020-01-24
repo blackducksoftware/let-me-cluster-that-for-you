@@ -10,6 +10,7 @@ set -o errexit -o nounset -o pipefail
 # this line enables debugging
 set -xv
 
+# SOURCE: https://github.com/helm/charts/tree/master/stable/nginx-ingress
 
 # optional arguments with defaults
 DEFAULT_CHART_VALUES_LOCATION="./nginx-ingress-values.yml"

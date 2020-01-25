@@ -10,17 +10,22 @@ output "cluster-config" {
   value = "${module.eks-public.cluster-config}"
 }
 
-output "vpc_id" {
-  value = "${module.eks-public.vpc_id}"
+output "worker_node_security_group_id" {
+  value = "${module.eks-public.worker_node_security_group_id}"
 }
+
+output "vpc_id" {
+  value = "${module.vpc.vpc_id}"
+}
+
 output "vpc_public_subnets" {
-  value = "${module.eks-public.vpc_public_subnets}"
+  value = "${module.vpc.vpc_public_subnets}"
 }
 
 output "vpc_database_subnets" {
-  value = "${module.eks-public.vpc_database_subnets}"
+  value = "${module.vpc.vpc_database_subnets}"
 }
 
-output "worker_node_security_group_id" {
-  value = "${module.eks-public.worker_node_security_group_id}"
+output "db_endpoint" {
+    value = "${module.postgres-rds.db_endpoint}"
 }

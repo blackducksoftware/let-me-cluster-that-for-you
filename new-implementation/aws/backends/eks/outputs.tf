@@ -4,13 +4,10 @@ output "master-url" {
 
 output "cluster-auth-config" {
   value = "${module.eks.config_map_aws_auth}"
-#  value = "${var.is_enabled == "true" ? module.eks.0.config_map_aws_auth : ""}"
 }
 
 output "cluster-config" {
   value = "${module.eks.kubeconfig}"
-#  value = "${element(concat(module.eks.kubeconfig, list("")), 0)}"
-#  value = "${var.is_enabled == "true" ? module.eks.0.kubeconfig : ""}"
 }
 
 output "master-public-dns" {
@@ -69,23 +66,6 @@ output "cluster-ssh-username" {
 
 output "additional-modules" {
   value = []
-}
-
-// vpc output
-output "vpc_id" {
-  value = "${module.vpc.vpc_id}"
-}
-
-output "vpc_cidr_ip" {
-  value = "${module.vpc.vpc_cidr_block}"
-}
-
-output "vpc_public_subnets" {
-  value = "${module.vpc.public_subnets}"
-}
-
-output "vpc_database_subnets" {
-  value = "${module.vpc.database_subnets}"
 }
 
 output "worker_node_security_group_id" {

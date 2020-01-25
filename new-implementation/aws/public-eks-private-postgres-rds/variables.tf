@@ -1,3 +1,17 @@
+
+
+variable "eks" {
+  type = bool
+  description = "To enable eks"
+  default = true
+}
+
+variable "rds" {
+  type = bool
+  description = "To enable rds"
+  default = true
+}
+
 variable "cluster_name" {
   type = string
   description = "Name for of EKS cluster"

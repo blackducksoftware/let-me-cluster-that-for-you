@@ -1,11 +1,8 @@
 
-<<<<<<< HEAD
 provider "aws" {
   region  = var.region
 }
 
-=======
->>>>>>> 0ff79f351647dd0d8262295cb0161c4bac8984e8
 resource "aws_security_group" "allow_postgres" {
   name        = "${var.db_name}-postgres-sg"
   description = "Allow postgres inbound traffic"
@@ -16,7 +13,6 @@ resource "aws_security_group" "allow_postgres" {
   }
 }
 
-<<<<<<< HEAD
 resource "aws_security_group_rule" "allow_postgres_rule_inbound" {
   type              = "ingress"
   from_port         = 5432
@@ -24,19 +20,6 @@ resource "aws_security_group_rule" "allow_postgres_rule_inbound" {
   protocol          = "tcp"
   security_group_id = aws_security_group.allow_postgres.id
   cidr_blocks       = [ "0.0.0.0/0" ]
-=======
-resource "aws_security_group_rule" "allow_postgres_rule" {
-  type                     = "ingress"
-  from_port                = 5432
-  to_port                  = 5432
-  protocol                 = "tcp"
-  security_group_id        = aws_security_group.allow_postgres.id
-  source_security_group_id = var.security_groups
-}
-
-provider "aws" {
-  region  = var.region
->>>>>>> 0ff79f351647dd0d8262295cb0161c4bac8984e8
 }
 
 # https://registry.terraform.io/modules/terraform-aws-modules/rds/aws/2.13.0

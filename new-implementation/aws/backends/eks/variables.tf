@@ -3,7 +3,6 @@ variable "cluster_name" {
   description = "Name for of EKS cluster"
 }
 
-<<<<<<< HEAD
 variable "subnets" {
     type        =  list
     description = " Subnets for EKS to setup"
@@ -18,11 +17,6 @@ variable "kubernetes_version" {
   type        = string
   description = "The version of EKS to setup"
   default     = "1.14"
-=======
-variable "kubernetes_version" {
-  type        = string
-  description = "The version of EKS to setup"
->>>>>>> 0ff79f351647dd0d8262295cb0161c4bac8984e8
 }
 
 variable "region" {
@@ -40,10 +34,7 @@ variable "workers" {
 variable "instance_type" {
   type        = string
   description = "Worker node instance type"
-<<<<<<< HEAD
   default     = "m4.large"
-=======
->>>>>>> 0ff79f351647dd0d8262295cb0161c4bac8984e8
 }
 
 variable "instance_create_timeout" {

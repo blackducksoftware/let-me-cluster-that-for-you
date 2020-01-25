@@ -1,0 +1,16 @@
+# Example PVC to test the provisioner
+# Source: https://github.com/kubernetes-incubator/external-storage/tree/nfs-provisioner-v2.2.2/nfs/deploy/kubernetes/claim.yaml
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nfs
+  namespace: nfs-provisioner
+  annotations:
+    volume.beta.kubernetes.io/storage-class: "example-nfs"
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Mi

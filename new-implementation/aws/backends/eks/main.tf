@@ -1,5 +1,15 @@
+<<<<<<< HEAD
 provider "aws" {
   region  = var.region
+=======
+//local variables
+
+locals {
+  instance_create_timeout = "60"
+}
+
+data "aws_availability_zones" "available" {
+>>>>>>> 0ff79f351647dd0d8262295cb0161c4bac8984e8
 }
 
 data "aws_eks_cluster" "cluster" {

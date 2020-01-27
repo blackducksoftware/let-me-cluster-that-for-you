@@ -12,7 +12,7 @@ variable "pg_server_name" {
 }
 
 variable "pg_sku" {
-  default = "B_Gen5_2"
+  default = "GP_Gen5_2"
 }
 
 variable "storage_mb" {

@@ -32,17 +32,17 @@ variable "postgres_version" {
 }
 
 variable "subnets" {
-    type        =  list
-    description = "subnets to setup rds"
+  type        = list
+  description = "subnets to setup rds"
 }
 
 variable "vpc_id" {
-    type        =  string
-    description = "VPC for rds"
+  type        = string
+  description = "VPC for rds"
 }
 
 variable "public_access" {
-    type        =  bool
-    description = "to enable or disable public access to rds"
-    default     = true
+  type        = bool
+  description = "to enable or disable public access to rds"
+  default     = true
 }

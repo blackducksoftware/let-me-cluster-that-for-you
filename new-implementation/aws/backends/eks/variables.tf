@@ -4,13 +4,13 @@ variable "cluster_name" {
 }
 
 variable "subnets" {
-    type        =  list
-    description = " Subnets for EKS to setup"
+  type        = list
+  description = " Subnets for EKS to setup"
 }
 
 variable "vpc_id" {
-    type        =  string
-    description = "Vpc for EKS to setup"
+  type        = string
+  description = "Vpc for EKS to setup"
 }
 
 variable "kubernetes_version" {

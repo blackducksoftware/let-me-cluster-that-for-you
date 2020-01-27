@@ -62,7 +62,7 @@ output "bastion-ssh-username" {
 }
 output "cluster-ssh-username" {
   value = "ec2-user"
-} 
+}
 
 output "additional-modules" {
   value = []

@@ -27,5 +27,5 @@ output "vpc_database_subnets" {
 }
 
 output "db_endpoint" {
-    value = "${module.postgres-rds.db_endpoint}"
+  value = "${module.postgres-rds.db_endpoint}"
 }

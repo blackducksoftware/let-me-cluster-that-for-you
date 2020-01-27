@@ -1,5 +1,5 @@
 provider "aws" {
-  region  = var.region
+  region = var.region
 }
 
 data "aws_availability_zones" "available" {
@@ -7,7 +7,7 @@ data "aws_availability_zones" "available" {
 
 data "template_file" "public_cidrs" {
   count    = 3
-  template = "${cidrsubnet("10.0.0.0/16", 8, count.index )}"
+  template = "${cidrsubnet("10.0.0.0/16", 8, count.index)}"
 }
 
 data "template_file" "database_cidrs" {

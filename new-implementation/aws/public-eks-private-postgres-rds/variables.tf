@@ -19,7 +19,7 @@ variable "workers" {
   default     = "4"
 }
 
-/* variable "depends_on" { 
+/* variable "depends_on" {
   type = list
   default = []
   }*/

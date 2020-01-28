@@ -3,10 +3,13 @@ resource "random_string" "suffix" {
   length  = 4
   special = false
 }
+
+
 locals {
   /* Local variables */
   name = "${var.cluster_name}-${random_string.suffix.result}"
 }
+
 
 # common module for eks and rds
 module "vpc" {
@@ -14,6 +17,7 @@ module "vpc" {
   region   = var.region
   vpc_name = local.name
 }
+
 
 module "eks-public" {
   source             = "../backends/eks"
@@ -25,6 +29,7 @@ module "eks-public" {
   subnets            = "${module.vpc.vpc_public_subnets}"
   vpc_id             = "${module.vpc.vpc_id}"
 }
+
 
 module "postgres-rds" {
   source           = "../backends/postgres-rds"

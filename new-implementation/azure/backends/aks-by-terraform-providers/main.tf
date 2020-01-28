@@ -48,6 +48,7 @@ resource "azurerm_subnet" "tf-k8s-acc" {
 
   # this field is deprecated and will be removed in 2.0 - but is required until then
   route_table_id = azurerm_route_table.tf-k8s-acc.id
+  service_endpoints = ["Microsoft.Sql"]
 }
 
 resource "azurerm_subnet_route_table_association" "tf-k8s-acc" {

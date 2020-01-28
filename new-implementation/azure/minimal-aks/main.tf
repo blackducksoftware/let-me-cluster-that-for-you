@@ -7,9 +7,9 @@ module "aks" {
   source  = "Azure/aks/azurerm"
   version = "2.0.0"
 
-  CLIENT_ID = var.CLIENT_ID
-  CLIENT_SECRET = var.CLIENT_SECRET
-  prefix = var.prefix
-  location = var.location
+  CLIENT_ID          = var.CLIENT_ID
+  CLIENT_SECRET      = var.CLIENT_SECRET
+  prefix             = var.prefix
+  location           = var.location
   kubernetes_version = var.kubernetes_version
 }

@@ -7,21 +7,12 @@ resource "azurerm_postgresql_server" "pg_server" {
 
   storage_profile {
     storage_mb            = var.storage_mb
-    backup_retention_days = var.backup_retention_days 
-    geo_redundant_backup  = var.geo_redundant_backup  
+    backup_retention_days = var.backup_retention_days
+    geo_redundant_backup  = var.geo_redundant_backup
   }
 
-  administrator_login          = var.administrator_login          
-  administrator_login_password = var.administrator_login_password 
-  version                      = var.pg_version                      
-  ssl_enforcement              = var.ssl_enforcement              
+  administrator_login          = var.administrator_login
+  administrator_login_password = var.administrator_login_password
+  version                      = var.pg_version
+  ssl_enforcement              = var.ssl_enforcement
 }
-
-#resource "azurerm_postgresql_database" "example" {
-#  name                = "exampledb"
-#  resource_group_name = "${azurerm_resource_group.example.name}"
-#  server_name         = "${azurerm_postgresql_server.example.name}"
-#  charset             = "UTF8"
-#  collation           = "English_United States.1252"
-#}
-

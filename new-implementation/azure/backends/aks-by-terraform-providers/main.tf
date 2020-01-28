@@ -47,7 +47,7 @@ resource "azurerm_subnet" "tf-k8s-acc" {
   virtual_network_name = azurerm_virtual_network.tf-k8s-acc.name
 
   # this field is deprecated and will be removed in 2.0 - but is required until then
-  route_table_id = azurerm_route_table.tf-k8s-acc.id
+  route_table_id    = azurerm_route_table.tf-k8s-acc.id
   service_endpoints = ["Microsoft.Sql"]
 }
 

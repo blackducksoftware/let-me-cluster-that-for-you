@@ -1,15 +1,16 @@
 variable "prefix" {
   description = "A prefix used for all resources in this example"
-  default     = "tf-k8s-acc"
+  default     = "lmctfy"
 }
 
 variable "location" {
-  default     = "West Europe"
+  default     = "centralus"
   description = "The Azure Region in which all resources in this example should be provisioned"
 }
 
 variable "kubernetes_version" {
   type = string
+  default = "1.15"
 }
 
 variable "workers_count" {

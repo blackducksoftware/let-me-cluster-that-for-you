@@ -1,10 +1,5 @@
-//local variables
-
-locals {
-  instance_create_timeout = "60"
-}
-
-data "aws_availability_zones" "available" {
+provider "aws" {
+  region = var.region
 }
 
 data "aws_eks_cluster" "cluster" {
@@ -15,45 +10,13 @@ data "aws_eks_cluster_auth" "cluster" {
   name = module.eks.cluster_id
 }
 
-
-data "template_file" "public_cidrs" {
-  count    = 3
-  template = "${cidrsubnet("10.0.0.0/16", 8, count.index)}"
-}
-
-data "template_file" "database_cidrs" {
-  count    = 2
-  template = "${cidrsubnet("10.0.0.0/16", 8, count.index + 3)}"
-}
-
 // ssh keypair
 resource "aws_key_pair" "keypair" {
   key_name   = var.cluster_name
   public_key = file(var.public_key_path)
 }
 
-module "vpc" {
-  # https://github.com/terraform-aws-modules/terraform-aws-vpc/releases
-  # https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/2.22.0
-  source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 2.22.0"
-
-  name                 = var.cluster_name
-  cidr                 = "10.0.0.0/16"
-  azs                  = data.aws_availability_zones.available.names
-  database_subnets     = "${data.template_file.database_cidrs.*.rendered}"
-  public_subnets       = "${data.template_file.public_cidrs.*.rendered}"
-  enable_dns_hostnames = true
-  enable_nat_gateway   = true
-  single_nat_gateway   = true
-  tags = {
-    "kubernetes.io/cluster/${var.cluster_name}" = "shared"
-  }
-}
-
-provider "aws" {
-  region  = var.region
-}
+# https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/8.1.0
 
 provider "kubernetes" {
   host                   = element(concat(data.aws_eks_cluster.cluster[*].endpoint, list("")), 0)
@@ -64,18 +27,17 @@ provider "kubernetes" {
 }
 
 module "eks" {
-  source  = "terraform-aws-modules/eks/aws"
-  version = "~> 8.1"
-
+  source                         = "terraform-aws-modules/eks/aws"
+  version                        = "8.1.0"
   cluster_name                   = "${var.cluster_name}"
   cluster_version                = "${var.kubernetes_version}"
-  subnets                        = "${module.vpc.public_subnets}"
-  vpc_id                         = "${module.vpc.vpc_id}"
+  subnets                        = var.subnets
+  vpc_id                         = var.vpc_id
   cluster_endpoint_public_access = "true"
   write_kubeconfig               = "true"
   config_output_path             = "../"
   manage_aws_auth                = true
-  cluster_create_timeout         = "${local.instance_create_timeout}m"
+  cluster_create_timeout         = "${var.instance_create_timeout}m"
   tags = {
     Name = "${var.cluster_name}"
   }
@@ -89,7 +51,7 @@ module "eks" {
       root_volume_size     = "100"
       root_volume_type     = "gp2"
       public_ip            = "true"
-      subnets              = "${module.vpc.public_subnets}"
+      subnets              = var.subnets
       key_name             = "${var.cluster_name}"
     }
   ]

@@ -54,6 +54,9 @@ module "postgresql-db" {
   disk_type        = var.disk_type
   region           = var.region
   zone             = var.zone
+  user_name        = var.pguser
+  user_password    = var.pgpass
+  
 
   ip_configuration = {
     ipv4_enabled        = false

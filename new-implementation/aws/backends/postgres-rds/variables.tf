@@ -1,28 +1,14 @@
-variable "instance_class" {
-  type        = string
-  description = "instance type for postgres "
-  default     = "db.t2.large"
-}
+
+
+
+
+
+
 
 variable "region" {
   type        = string
-  description = "Region of rds to setup"
+  description = "Region of EKS to setup"
   default     = "us-east-1"
-}
-
-variable "db_name" {
-  type        = string
-  description = "Name for of database instance"
-}
-
-variable "db_username" {
-  type        = string
-  description = "Username for database instance"
-}
-
-variable "db_password" {
-  type        = string
-  description = "Password for database instance"
 }
 
 variable "postgres_version" {
@@ -31,12 +17,59 @@ variable "postgres_version" {
   default     = "9.6"
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+variable "db_name" {
+  type        = string
+  description = "Name for of database instance"
+}
+
+
+variable "db_username" {
+  type        = string
+  description = "Username for database instance"
+  default = "postgres"
+}
+
+variable "db_password" {
+  type        = string
+  description = "Password for database instance"
+}
+
+variable "vpc_id" {
+  type        = string
+  description = "Region of EKS to setup"
+}
+
 variable "subnets" {
   type        = list
   description = "subnets to setup rds"
 }
 
-variable "vpc_id" {
+
+
+
+
+
+
+variable "security_groups" {
   type        = string
   description = "VPC for rds"
 }

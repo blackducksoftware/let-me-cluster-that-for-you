@@ -3,11 +3,14 @@ variable "project_id" {
   type        = string
 }
 
-variable "db_name" {
-  description = "The name of the PostgreSQL Database instance"
+
+
+variable "region" {
+  description = "The region of the Cloud SQL resources"
   type        = string
-  default     = "example-postgres-private"
+  default     = "us-east1"
 }
+
 
 variable "postgresql_version" {
   description = "Version of the PostgreSQL Database instance"
@@ -33,11 +36,33 @@ variable "disk_type" {
   default     = "PD_SSD"
 }
 
-variable "region" {
-  description = "The region of the Cloud SQL resources"
+variable "db_name" {
+  description = "The name of the PostgreSQL Database instance"
   type        = string
-  default     = "us-east1"
+  default     = "example-postgres-private"
 }
+
+
+
+
+
+
+
+
+
+
+
+
+variable "network_name" {
+  description = "Name of the VPC"
+  type        = string
+  default     = "psql-network"
+}
+
+
+
+
+
 
 variable "zone" {
   description = "The zone for the master instance, it should be something like: `a`, `c`."
@@ -45,8 +70,3 @@ variable "zone" {
   default     = "c"
 }
 
-variable "network_name" {
-  description = "Name of the VPC"
-  type        = string
-  default     = "psql-network"
-}

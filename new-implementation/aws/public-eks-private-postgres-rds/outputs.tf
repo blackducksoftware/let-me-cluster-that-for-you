@@ -1,8 +1,16 @@
-#output "kubeconfig_path" {
-#  description = "Path to kubeconfig file"
-#  value       = module.custom_gke.kubeconfig_path
-#}
-#TODO ^^^
+# TODO: turn "cluster-auth-config" and "cluster-config" into "kubeconfig_path"
+output "cluster-auth-config" {
+  value = "${module.eks-public.cluster-auth-config}"
+}
+
+output "cluster-config" {
+  value = "${module.eks-public.cluster-config}"
+}
+
+# output "kubeconfig_path" {
+#   description = "Path to kubeconfig file"
+#   value       = module.custom_gke.kubeconfig_path
+# }
 
 output "psql_conn" {
   description = "The connection name of the master instance to be used in connection strings"
@@ -15,7 +23,10 @@ output "psql_conn" {
 #  sensitive   = true
 #  value       = module.custom_postgresql_db.psql_user_pass
 #}
-#
+
+#############################################################################
+# DEBUG OUTPUTS
+
 output "instance_name" {
   description = "The name for Cloud SQL instance"
   value       = module.custom_postgresql_db.name
@@ -26,20 +37,8 @@ output "cluster_name" {
   value       = module.eks-public.cluster_name
 }
 
-
-
-
-
 output "master-url" {
   value = "${module.eks-public.master-url}"
-}
-
-output "cluster-auth-config" {
-  value = "${module.eks-public.cluster-auth-config}"
-}
-
-output "cluster-config" {
-  value = "${module.eks-public.cluster-config}"
 }
 
 output "vpc_id" {

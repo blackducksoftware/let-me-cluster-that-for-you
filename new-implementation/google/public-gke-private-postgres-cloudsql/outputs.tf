@@ -1,3 +1,4 @@
+# MAIN OUTPUTS
 output "kubeconfig_path" {
   description = "Path to kubeconfig file"
   value       = module.custom_gke.kubeconfig_path
@@ -15,6 +16,7 @@ output "psql_user_pass" {
   value       = module.custom_postgresql_db.psql_user_pass
 }
 
+# DEBUG OUTPUTS
 output "instance_name" {
   description = "The name for Cloud SQL instance"
   value       = module.custom_postgresql_db.instance_name
@@ -24,9 +26,6 @@ output "cluster_name" {
   description = "Cluster name"
   value       = module.custom_gke.cluster_name
 }
-
-
-
 
 output "kubernetes_endpoint" {
   description = "The cluster endpoint"

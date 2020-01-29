@@ -42,16 +42,16 @@ variable "db_name" {
   default     = "example-postgres-private"
 }
 
+variable "pguser" {
+  type        = string
+  description = "Username for database instance"
+  default = "postgres"
+}
 
-
-
-
-
-
-
-
-
-
+variable "pgpass" {
+  type        = string
+  description = "Password for database instance"
+}
 
 variable "network_name" {
   description = "Name of the VPC"

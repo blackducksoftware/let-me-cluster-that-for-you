@@ -1,33 +1,6 @@
-output "cluster_name" {
-  description = "Cluster name"
-  value       = module.custom_gke.cluster_name
-}
-
-output "kubernetes_endpoint" {
-  description = "The cluster endpoint"
-  sensitive   = true
-  value       = module.custom_gke.kubernetes_endpoint
-}
-
 output "kubeconfig_path" {
   description = "Path to kubeconfig file"
   value       = module.custom_gke.kubeconfig_path
-}
-
-output "network_name" {
-  description = "The name of the VPC being created"
-  value       = module.custom_gke.network_name
-}
-
-output "subnet_name" {
-  description = "The name of the subnet being created"
-  value       = module.custom_gke.subnet_name
-}
-
-## POSTGRESQL OUTPUTS
-output "instance_name" {
-  description = "The name for Cloud SQL instance"
-  value       = module.custom_postgresql_db.instance_name
 }
 
 output "psql_conn" {
@@ -40,6 +13,35 @@ output "psql_user_pass" {
   description = "The password for the default user. If not set, a random one will be generated and available in the generated_user_password output variable."
   sensitive   = true
   value       = module.custom_postgresql_db.psql_user_pass
+}
+
+output "instance_name" {
+  description = "The name for Cloud SQL instance"
+  value       = module.custom_postgresql_db.instance_name
+}
+
+output "cluster_name" {
+  description = "Cluster name"
+  value       = module.custom_gke.cluster_name
+}
+
+
+
+
+output "kubernetes_endpoint" {
+  description = "The cluster endpoint"
+  sensitive   = true
+  value       = module.custom_gke.kubernetes_endpoint
+}
+
+output "network_name" {
+  description = "The name of the VPC being created"
+  value       = module.custom_gke.network_name
+}
+
+output "subnet_name" {
+  description = "The name of the subnet being created"
+  value       = module.custom_gke.subnet_name
 }
 
 output "public_ip_address" {

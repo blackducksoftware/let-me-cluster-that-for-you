@@ -31,10 +31,6 @@ variable "administrator_login" {
   default = "psqladminun"
 }
 
-variable "administrator_login_password" {
-  default = "H@Sh1CoR3!"
-}
-
 variable "pg_version" {
   default = "9.6"
 }

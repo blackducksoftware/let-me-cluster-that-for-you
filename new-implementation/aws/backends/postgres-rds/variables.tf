@@ -58,13 +58,6 @@ variable "vpc_id" {
   description = "Region of EKS to setup"
 }
 
-
-variable "postgres_version" {
-  type        = string
-  description = "Postgres version for database instance"
-  default     = "9.6"
-}
-
 variable "subnets" {
   type        = list
   description = "subnets to setup rds"

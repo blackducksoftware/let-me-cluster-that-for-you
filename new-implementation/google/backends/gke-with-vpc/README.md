@@ -8,12 +8,14 @@
 ```bash
 
 export GOOGLE_APPLICATION_CREDENTIALS="<PATH TO SERVICE ACCOUNT>"
+export TF_VAR_project_id="<PROJECT_ID>"
 
-# alias trfm11=/usr/local/opt/terraform@0.11/bin/terraform
-alias trfm12=/usr/local/bin/terraform
+# on macOS
+# alias t11=/usr/local/opt/terraform@0.11/bin/terraform
+alias t12=/usr/local/bin/terraform
 
-trfm12 init
-trfm12 plan
-trfm12 apply
-trfm12 destroy
+t12 init
+t12 plan
+t12 apply --auto-approve
+t12 destroy --auto-approve
 ```

@@ -59,9 +59,15 @@ variable "vpc_id" {
 }
 
 
+variable "postgres_version" {
+  type        = string
+  description = "Postgres version for database instance"
+  default     = "9.6"
+}
+
 variable "subnets" {
   type        = list
-  description = "Region of EKS to setup"
+  description = "subnets to setup rds"
 }
 
 
@@ -72,6 +78,11 @@ variable "subnets" {
 
 variable "security_groups" {
   type        = string
-  description = "Region of EKS to setup"
+  description = "VPC for rds"
 }
 
+variable "public_access" {
+  type        = bool
+  description = "to enable or disable public access to rds"
+  default     = true
+}

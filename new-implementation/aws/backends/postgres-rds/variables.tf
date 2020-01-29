@@ -45,7 +45,7 @@ variable "db_name" {
 variable "db_username" {
   type        = string
   description = "Username for database instance"
-  default = "postgres"
+  default     = "postgres"
 }
 
 variable "db_password" {

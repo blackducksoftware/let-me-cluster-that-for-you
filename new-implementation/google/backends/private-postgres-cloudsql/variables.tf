@@ -45,7 +45,7 @@ variable "db_name" {
 variable "pguser" {
   type        = string
   description = "Username for database instance"
-  default = "postgres"
+  default     = "postgres"
 }
 
 variable "pgpass" {

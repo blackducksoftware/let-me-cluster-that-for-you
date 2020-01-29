@@ -37,7 +37,7 @@ variable "storage_mb" {
 
 
 variable "pg_server_name" {
-  default = "pg-server"
+  default     = "pg-server"
   description = "cannot be empty or null. It can only be made up of lowercase letters 'a'-'z', the numbers 0-9 and the hyphen. The hyphen may not lead or trail in the name."
 }
 
@@ -45,7 +45,7 @@ variable "pg_server_name" {
 variable "administrator_login" {
   type        = string
   description = "Username for database instance"
-  default = "postgres"
+  default     = "postgres"
 }
 
 variable "administrator_login_password" {

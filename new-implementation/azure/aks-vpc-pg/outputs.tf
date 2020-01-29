@@ -8,7 +8,7 @@ output "psql_user_pass" {
 }
 
 output "psql_conn" {
- description = "The connection name of the master instance to be used in connection strings"
- sensitive   = true
- value       = module.db-on-vpc.fqdn
+  description = "The connection name of the master instance to be used in connection strings"
+  sensitive   = true
+  value       = module.db-on-vpc.fqdn
 }

@@ -1,16 +1,18 @@
 # TODO: turn "cluster-auth-config" and "cluster-config" into "kubeconfig_path"
-output "cluster-auth-config" {
-  value = "${module.eks-public.cluster-auth-config}"
-}
-
-output "cluster-config" {
-  value = "${module.eks-public.cluster-config}"
-}
-
-# output "kubeconfig_path" {
-#   description = "Path to kubeconfig file"
-#   value       = module.custom_gke.kubeconfig_path
+# output "cluster-auth-config" {
+#   sensitive = true
+#   value = "${module.eks-public.cluster-auth-config}"
 # }
+
+# output "cluster-config" {
+#   sensitive = true
+#   value = "${module.eks-public.cluster-config}"
+# }
+
+output "kubeconfig_path" {
+  description = "Path to kubeconfig file"
+  value       = "../"
+}
 
 output "psql_conn" {
   description = "The connection name of the master instance to be used in connection strings"

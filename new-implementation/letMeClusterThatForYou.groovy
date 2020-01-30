@@ -14,10 +14,9 @@ pipeline {
                             sh '''
                                 pwd
                                 cat ${INFRA} > infra.json
-                                docker run --name $cluster_name -v $(pwd):/root/creds -v /var/lib/jenkins/kubeconfigs:/opt/kubeconfigs -v /home/bhutwala/.ssh:/root/.ssh ybhutdocker/lmctfy:google sh -c "export GOOGLE_APPLICATION_CREDENTIALS="/root/creds/infra.json" && export TF_VAR_project_id="snps-polaris-onprem-dev" && export TF_VAR_cluster_name=$cluster_name && cd /lmctfy/google/public-gke-private-postgres-cloudsql; terraform init; terraform apply --auto-approve; cp "$(terraform output kubeconfig_path)" /opt/kubeconfigs/$cluster_name-config" || docker commit $cluster_name $cluster_name-jenkins-lmctfy:$cluster_name
+                                docker run --name $cluster_name -v $(pwd):/root/creds -v /var/lib/jenkins/kubeconfigs:/opt/kubeconfigs -v /home/bhutwala/.ssh:/root/.ssh ybhutdocker/lmctfy:google sh -c "cd /lmctfy/google/public-gke-private-postgres-cloudsql; terraform init; export GOOGLE_APPLICATION_CREDENTIALS="/root/creds/infra.json" && terraform apply --auto-approve -var="project_id=snps-polaris-onprem-dev" -var="cluster_name=$cluster_name" -var="network_name=$cluster_name" -var="subnet_name=$cluster_name";cp /lmctfy/google/backends/gke-with-vpc/kubeconfig /opt/kubeconfigs/$cluster_name-config" || docker commit $cluster_name $cluster_name-lmctfy:$cluster_name
                             '''
                         }
-
                     }
                 }
             }

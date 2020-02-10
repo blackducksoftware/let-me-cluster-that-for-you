@@ -1,5 +1,7 @@
-resource "random_id" "password" {
-  byte_length = 16
+resource "random_string" "postgresql_admin_password" {
+  length  = 32
+  special = false
+  upper   = true
 }
 
 resource "azurerm_postgresql_server" "pg_server" {
@@ -16,7 +18,7 @@ resource "azurerm_postgresql_server" "pg_server" {
   }
 
   administrator_login          = var.administrator_login
-  administrator_login_password = random_id.password.hex
+  administrator_login_password = random_string.postgresql_admin_password.result
   version                      = var.pg_version
   ssl_enforcement              = var.ssl_enforcement
 }

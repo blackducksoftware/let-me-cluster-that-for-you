@@ -7,5 +7,5 @@ output "password" {
 }
 
 output "fqdn" {
-  value = azurerm_postgresql_server.fqdn
+  value = azurerm_postgresql_server.pg_server.fqdn
 }

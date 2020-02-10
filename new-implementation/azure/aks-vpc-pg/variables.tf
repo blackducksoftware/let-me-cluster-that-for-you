@@ -1,6 +1,5 @@
-variable "prefix" {
+variable "cluster_name" {
   description = "A prefix used for all resources in this example"
-  default     = "tf-k8s-acc"
 }
 
 variable "location" {
@@ -36,7 +35,3 @@ variable "aks_client_secret" {
 #   description = "The Path at which your Public SSH Key is located. Defaults to ~/.ssh/id_rsa.pub"
 #   default     = "~/.ssh/id_rsa.pub"
 #}
-
-variable "administrator_login_password" {
-  type=string
-}

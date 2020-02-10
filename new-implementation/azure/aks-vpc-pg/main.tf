@@ -1,6 +1,6 @@
 module "aks-with-vpc" {
   source             = "../backends/aks-by-terraform-providers"
-  prefix             = var.prefix
+  prefix             = var.cluster_name
   location           = var.location
   kubernetes_version = var.kubernetes_version
   workers_count      = var.workers_count
@@ -14,7 +14,6 @@ module "db-on-vpc" {
   rg_name        = module.aks-with-vpc.rg_name
   location       = var.location
   pg_server_name = "pg-server-name"
-  administrator_login_password = var.administrator_login_password
 }
 
 resource "azurerm_postgresql_virtual_network_rule" "pg_vnet_rule" {

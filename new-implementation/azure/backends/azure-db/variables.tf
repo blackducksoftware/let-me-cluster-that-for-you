@@ -29,11 +29,6 @@ variable "administrator_login" {
   default     = "postgres"
 }
 
-variable "administrator_login_password" {
-  type        = string
-  description = "Password for database instance"
-}
-
 variable "backup_retention_days" {
   default = 7
 }

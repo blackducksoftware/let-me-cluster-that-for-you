@@ -15,10 +15,12 @@ variable "kubernetes_version" {
   default     = "latest"
 }
 
-variable "region" {
-  description = "The region to host the cluster in"
+variable "location" {
+  # https://www.terraform.io/docs/providers/google/r/container_cluster.html#location
+  # The location (region or zone) in which the cluster master will be created, as well as the default node location. If you specify a zone (such as us-central1-a), the cluster will be a zonal cluster with a single cluster master. If you specify a region (such as us-west1), the cluster will be a regional cluster with multiple masters spread across zones in the region, and with default node locations in those zones as well
+  description = "The region or zone to host the cluster in"
   type        = string
-  default     = "us-east1"
+  default     = "us-east1-b"
 }
 
 variable "initial_node_count" {
@@ -45,4 +47,11 @@ variable "subnet_name" {
   description = "The subnetwork created to host the cluster in"
   type        = string
   default     = "gke-subnet"
+}
+
+variable "region" {
+  # NOTE: make sure the region matches location variable above
+  description = "The region for the subnetwork; MUST match region specified in location"
+  type        = string
+  default     = "us-east1"
 }

@@ -44,13 +44,9 @@ variable "db_name" {
 
 variable "pguser" {
   type        = string
-  description = "Username for database instance"
-  default     = "postgres"
-}
-
-variable "pgpass" {
-  type        = string
-  description = "Password for database instance"
+  description = "The name of the default user for database instance"
+  # TODO: defaulted for blackduck
+  default     = "blackduck"
 }
 
 variable "network_name" {
@@ -67,6 +63,6 @@ variable "network_name" {
 variable "zone" {
   description = "The zone for the master instance, it should be something like: `a`, `c`."
   type        = string
-  default     = "c"
+  default     = "b"
 }
 

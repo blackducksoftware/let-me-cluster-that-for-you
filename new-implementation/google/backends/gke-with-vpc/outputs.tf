@@ -3,6 +3,11 @@ output "project_id" {
   value       = var.project_id
 }
 
+# TODO: ideally output region and zone; instead of region and potentially region+zone
+output "location" {
+  value = var.location
+}
+
 output "region" {
   value = var.region
 }

@@ -31,7 +31,7 @@ output "psql_conn" {
 
 output "instance_name" {
   description = "The name for Cloud SQL instance"
-  value       = module.custom_postgresql_db.name
+  value       = module.postgres-rds.name
 }
 
 output "cluster_name" {
@@ -51,7 +51,7 @@ output "vpc_public_subnets" {
 }
 
 output "vpc_database_subnets" {
-  value = "${module.eks-public.vpc_database_subnets}"
+  value = "${module.postgres-rds.vpc_database_subnets}"
 }
 
 output "worker_node_security_group_id" {

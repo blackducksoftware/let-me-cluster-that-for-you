@@ -6,6 +6,18 @@ output "cluster-auth-config" {
   value = "${module.eks.config_map_aws_auth}"
 }
 
+output "cluster_name" {
+  value = "${var.cluster_name}"
+}
+
+output "vpc_public_subnets" {
+  value = "${var.subnets}"
+}
+
+output "vpc_id" {
+  value = "${var.vpc_id}"
+}
+
 output "cluster-config" {
   value = "${module.eks.kubeconfig}"
 }

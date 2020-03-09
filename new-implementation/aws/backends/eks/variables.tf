@@ -48,3 +48,4 @@ variable "public_key_path" {
   description = "The path to a local public key file that will be injected to the instances"
   default     = "~/.ssh/id_rsa.pub"
 }
+

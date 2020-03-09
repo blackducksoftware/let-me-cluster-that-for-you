@@ -41,4 +41,5 @@ module "postgres-rds" {
   postgres_version = var.postgres_version
   subnets          = "${module.vpc.vpc_database_subnets}"
   vpc_id           = "${module.vpc.vpc_id}"
+  security_groups  = var.security_groups
 }

@@ -79,3 +79,9 @@ variable "public_access" {
   description = "to enable or disable public access to rds"
   default     = true
 }
+
+variable "instance_class" {
+  type = string
+  description = "https://www.terraform.io/docs/providers/aws/r/db_instance.html#instance_class"
+  default = "db.t2.micro"
+}

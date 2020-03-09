@@ -33,6 +33,7 @@ module "eks" {
   cluster_name                   = "${var.cluster_name}"
   cluster_version                = "${var.kubernetes_version}"
   subnets                        = var.subnets
+  cluster_endpoint_public_access_cidrs = var.cluster_endpoint_public_access_cidrs
   vpc_id                         = var.vpc_id
   cluster_endpoint_public_access = "true"
   write_kubeconfig               = "true"

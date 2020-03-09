@@ -44,3 +44,10 @@ variable "postgres_version" {
   description = "Postgres version for database instance"
   default     = "9.6"
 }
+
+variable "security_groups" {
+  type        = string
+  description = "https://www.terraform.io/docs/providers/aws/r/security_group.html#security_groups"
+  default     = "default"
+}
+

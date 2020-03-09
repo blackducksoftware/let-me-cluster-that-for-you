@@ -1,5 +1,30 @@
 # README
 This is a component for EKS and RDS setup Where RDS is created in private network.
+
+## Generating AWS creds
+
+Go to https://console.aws.amazon.com/iam/home?#/security_credentials
+
+Click `Create access key` 
+
+Click `Download .csv file`
+
+Use a text editor to rearrange the file into aws-credfile.json, e.g.:
+```
+$ cat aws-credfile.json
+{
+  "Access key ID": "ASDFG1HJKL2ZXCVB3NM4",
+  "Secret access key": "MjU7nHy6BgT5vFr4Cde3+uytrewq123456789POI"
+}
+```
+
+Now you can yoink the values like so (mind the quotes):
+
+`cat aws-credfile.json | jq -r '."Access key ID"'`
+
+`cat aws-credfile.json | jq -r '."Secret access key"'`
+
+
 ## Sources
 ```
 [ VPC source repo ] https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/2.23.0

@@ -26,7 +26,7 @@ variable "location" {
 variable "initial_node_count" {
   type        = number
   description = "The number of nodes to create in this cluster's default node pool per zone/region."
-  default     = 1
+  default     = 3
 }
 
 variable "machine_type" {

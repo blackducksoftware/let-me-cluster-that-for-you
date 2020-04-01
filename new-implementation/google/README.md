@@ -1,5 +1,12 @@
 # README
 
+## Generating credentials
+
+https://cloud.google.com/iam/docs/creating-managing-service-account-keys
+
+tl;dr: `IAM & Admin` -> `Service accounts` -> `More` -> `Create key`  
+Save and use the full path to your new  `.json` in `tfvars`
+
 ## To build the image
 
 ```bash

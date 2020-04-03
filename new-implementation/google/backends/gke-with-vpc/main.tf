@@ -84,6 +84,16 @@ resource "google_container_cluster" "primary" {
     password = random_id.password.hex
   }
 
+  master_authorized_networks_config {
+    dynamic "cidr_blocks" {
+      for_each = var.master_authorized_networks_cidr_blocks
+      content {
+        cidr_block   = cidr_blocks.value.cidr_block
+        display_name = cidr_blocks.value.display_name
+      }
+    }
+  }
+
   node_config {
     # https://cloud.google.com/compute/docs/reference/rest/v1/instances#machineType
     machine_type = var.machine_type

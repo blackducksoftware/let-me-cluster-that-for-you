@@ -69,8 +69,10 @@ resource "google_container_cluster" "primary" {
   name               = var.cluster_name
   location           = var.location
   initial_node_count = var.initial_node_count
-  node_version       = data.google_container_engine_versions.supported.latest_node_version
-  min_master_version = data.google_container_engine_versions.supported.latest_master_version
+  #node_version       = data.google_container_engine_versions.supported.latest_node_version
+  #min_master_version = data.google_container_engine_versions.supported.latest_master_version
+  node_version       = var.kubernetes_version
+  min_master_version = var.kubernetes_version
   network            = module.gcp-network.network_name
   subnetwork         = module.gcp-network.subnets_names[0]
 
@@ -82,6 +84,16 @@ resource "google_container_cluster" "primary" {
   master_auth {
     username = random_id.username.hex
     password = random_id.password.hex
+  }
+
+  master_authorized_networks_config {
+    dynamic "cidr_blocks" {
+      for_each = var.master_authorized_networks_cidr_blocks
+      content {
+        cidr_block   = cidr_blocks.value.cidr_block
+        display_name = cidr_blocks.value.display_name
+      }
+    }
   }
 
   node_config {

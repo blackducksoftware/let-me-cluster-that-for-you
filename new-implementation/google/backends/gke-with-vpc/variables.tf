@@ -15,6 +15,22 @@ variable "kubernetes_version" {
   default     = "latest"
 }
 
+variable "master_authorized_networks_cidr_blocks" {
+  type = list(map(string))
+
+  default = [
+    {
+      cidr_block = "198.182.52.26/32"
+      display_name = "Bengaluru-India"
+    },
+    {
+      cidr_block = "149.117.0.0/16"
+      display_name = "snps-1"
+    }
+  ]
+
+}
+
 variable "location" {
   # https://www.terraform.io/docs/providers/google/r/container_cluster.html#location
   # The location (region or zone) in which the cluster master will be created, as well as the default node location. If you specify a zone (such as us-central1-a), the cluster will be a zonal cluster with a single cluster master. If you specify a region (such as us-west1), the cluster will be a regional cluster with multiple masters spread across zones in the region, and with default node locations in those zones as well

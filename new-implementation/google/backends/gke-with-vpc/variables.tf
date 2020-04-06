@@ -20,44 +20,52 @@ variable "master_authorized_networks_cidr_blocks" {
 
   default = [
     {
-      cidr_block = "198.182.52.26/32"
-      display_name = "Bengaluru-India"
-    },
-    {
-      cidr_block = "149.117.0.0/16"
+      cidr_block = "149.117.64.28/32"
       display_name = "snps-1"
     },
     {
-      cidr_block = "198.182.32.0/19"
+      cidr_block = "198.182.52.26/32"
       display_name = "snps-2"
     },
     {
-      cidr_block = "216.85.161.194/32"
+      cidr_block = "35.202.29.179/32"
+      display_name = "snps-3"
+    },
+    {
+      cidr_block = "198.182.55.28/32"
       display_name = "snps-4"
     },
     {
+      cidr_block = "216.85.161.194/32"
+      display_name = "snps-5"
+    },
+    {
       cidr_block = "50.21.174.162/32"
-      display_name = "Hitakshi-vpn-ip"
+      display_name = "snps-6"
     },
     {
-      cidr_block = "198.182.56.5/32"
-      display_name = "Hitakshi-office-ip"
+      cidr_block = "198.182.32.0/19"
+      display_name = "snps-7"
     },
     {
-      cidr_block = "192.231.134.1/32"
-      display_name = "dc2"
+      cidr_block = "149.117.0.0/16"
+      display_name = "snps-8"
     },
     {
-      cidr_block = "193.240.221.236/32"
-      display_name = "thale-and-belfast"
+      cidr_block = "80.75.109.0/24"
+      display_name = "snps-9"
     },
     {
-      cidr_block = "58.76.201.220/32"
-      display_name = "south-korea"
+      cidr_block = "64.128.208.115/32"
+      display_name = "snps-10"
+    },
+    {
+      cidr_block = "35.237.252.153/32"
+      display_name = "snps-11"
     },
     {
       cidr_block = "80.75.109.253/32"
-      display_name = "fuzztds-office"
+      display_name = "snps-12"
     }
   ]
 

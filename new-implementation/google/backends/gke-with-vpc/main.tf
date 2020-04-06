@@ -58,19 +58,21 @@ resource "random_id" "password" {
   byte_length = 16
 }
 
-data "google_container_engine_versions" "supported" {
-  project        = var.project_id
-  location       = var.location
-  version_prefix = var.kubernetes_version
-}
+#data "google_container_engine_versions" "supported" {
+#  project        = var.project_id
+#   location       = var.location
+#   version_prefix = var.kubernetes_version
+# }
 
 resource "google_container_cluster" "primary" {
   project            = var.project_id
   name               = var.cluster_name
   location           = var.location
   initial_node_count = var.initial_node_count
-  node_version       = data.google_container_engine_versions.supported.latest_node_version
-  min_master_version = data.google_container_engine_versions.supported.latest_master_version
+  #node_version       = data.google_container_engine_versions.supported.latest_node_version
+  #min_master_version = data.google_container_engine_versions.supported.latest_master_version
+  node_version       = var.kubernetes_version
+  min_master_version = var.kubernetes_version
   network            = module.gcp-network.network_name
   subnetwork         = module.gcp-network.subnets_names[0]
 

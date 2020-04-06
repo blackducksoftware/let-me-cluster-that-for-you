@@ -62,6 +62,9 @@ variable "cluster_endpoint_public_access_cidrs" {
                   "193.240.221.236/32",  # Theale and Belfast
                   "58.76.201.220/32",    # South Korea
                   "80.75.109.253/32",    # fuzztds office
+		  "35.202.29.179/32",
+		  "64.128.208.115/32",
+		  "35.237.252.153/32",
                 ]
 }
 

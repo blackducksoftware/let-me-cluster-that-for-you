@@ -70,7 +70,8 @@ resource "google_container_cluster" "primary" {
   location           = var.location
   initial_node_count = var.initial_node_count
   node_version       = data.google_container_engine_versions.supported.latest_node_version
-  min_master_version = data.google_container_engine_versions.supported.latest_master_version
+  # see upstream issue: https://github.com/terraform-providers/terraform-provider-google/pull/4013
+  min_master_version = data.google_container_engine_versions.supported.latest_node_version
   network            = module.gcp-network.network_name
   subnetwork         = module.gcp-network.subnets_names[0]
 

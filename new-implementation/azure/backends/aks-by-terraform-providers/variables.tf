@@ -31,7 +31,7 @@ variable "aks_client_secret" {
   description = "The Client Secret for the Service Principal to use for this Managed Kubernetes Cluster"
 }
 variable "cluster_endpoint_public_access_cidrs" {
-  description = "List of CIDR blocks which can access the Amazon AKS public API server endpoint."
+  description = "List of CIDR blocks which can access the Azure AKS public API server endpoint."
   type        = list(string)
   default     = [                        # Synopssys external-facing IPs:
                   "149.117.0.0/16",      # snps-1

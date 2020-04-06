@@ -11,7 +11,6 @@ variable "cluster_name" {
 variable "kubernetes_version" {
   description = "The Kubernetes version of the masters. If set to 'latest' it will pull latest available version in the selected region."
   type        = string
-  default     = "latest"
 }
 
 variable "network_name" {

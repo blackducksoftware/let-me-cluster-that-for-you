@@ -21,7 +21,7 @@ module "gcp-network" {
   # https://registry.terraform.io/modules/terraform-google-modules/network/google/2.0.1
   # https://github.com/terraform-google-modules/terraform-google-network/releases
   source  = "terraform-google-modules/network/google"
-  version = "~> 2.0.1"
+  version = "~> 2.1.2"
 
   project_id   = var.project_id
   network_name = local.random_network_name

@@ -1,6 +1,5 @@
-# project_id = ""
 cluster_name       = "yash-vpc-cluster"
-kubernetes_version = "latest"
+kubernetes_version = "1.14"
 location           = "us-east1-b"
 ##########
 network_name = "yash-network"

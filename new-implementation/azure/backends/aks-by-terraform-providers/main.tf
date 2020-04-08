@@ -3,7 +3,7 @@ locals {
 }
 
 provider "azurerm" {
-  version = ">= 1.28.0"
+  version = "~>1.44"
 }
 
 data "azurerm_kubernetes_service_versions" "current" {
@@ -62,6 +62,7 @@ resource "azurerm_kubernetes_cluster" "tf-k8s-acc" {
   location            = azurerm_resource_group.tf-k8s-acc.location
   dns_prefix          = "${local.random_prefix}-cluster"
   kubernetes_version  = data.azurerm_kubernetes_service_versions.current.latest_version
+  
   api_server_authorized_ip_ranges = var.cluster_endpoint_public_access_cidrs
   # Uncomment to enable SSH access to nodes
   #
@@ -94,6 +95,7 @@ resource "azurerm_kubernetes_cluster" "tf-k8s-acc" {
 
   network_profile {
     network_plugin = "azure"
+    load_balancer_sku = "standard"
   }
 }
 

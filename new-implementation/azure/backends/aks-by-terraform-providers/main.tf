@@ -45,7 +45,6 @@ resource "azurerm_subnet" "tf-k8s-acc" {
   resource_group_name  = azurerm_resource_group.tf-k8s-acc.name
   address_prefix       = "10.1.0.0/24"
   virtual_network_name = azurerm_virtual_network.tf-k8s-acc.name
-
   # this field is deprecated and will be removed in 2.0 - but is required until then
   route_table_id    = azurerm_route_table.tf-k8s-acc.id
   service_endpoints = ["Microsoft.Sql"]
@@ -62,7 +61,6 @@ resource "azurerm_kubernetes_cluster" "tf-k8s-acc" {
   location            = azurerm_resource_group.tf-k8s-acc.location
   dns_prefix          = "${local.random_prefix}-cluster"
   kubernetes_version  = data.azurerm_kubernetes_service_versions.current.latest_version
-  
   api_server_authorized_ip_ranges = var.cluster_endpoint_public_access_cidrs
   # Uncomment to enable SSH access to nodes
   #

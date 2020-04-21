@@ -36,6 +36,7 @@ module "eks" {
   cluster_endpoint_public_access_cidrs = var.cluster_endpoint_public_access_cidrs
   vpc_id                         = var.vpc_id
   cluster_endpoint_public_access = "true"
+  cluster_endpoint_private_access= "true"
   write_kubeconfig               = "true"
   config_output_path             = "../"
   manage_aws_auth                = true

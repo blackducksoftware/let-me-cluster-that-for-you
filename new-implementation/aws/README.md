@@ -1,6 +1,18 @@
 # README
 This is a component for EKS and RDS setup Where RDS is created in private network.
 
+## Build Docker Image
+
+```
+docker build . -t lmctfy:aws
+```
+
+## Run through Docker
+
+```
+docker run lmctfy:aws sh -c 'export AWS_DEFAULT_REGION="<region>";export AWS_ACCESS_KEY_ID="<access-key>";export AWS_SECRET_ACCESS_KEY="<secret-key>"; cd public-eks-private-postgres-rds; terraform init;terraform apply --auto-approve;'
+```
+
 ## Generating AWS creds
 
 Go to https://console.aws.amazon.com/iam/home?#/security_credentials

@@ -14,7 +14,11 @@ COPY . /lmctfy/aws
 
 WORKDIR /lmctfy/aws
 
+
 ENV AWSCLI_VERSION "1.14.10"
+
+RUN apk add --no-cache --update openssh-keygen curl
+RUN ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
 
 RUN apk -v --update add \
         python \

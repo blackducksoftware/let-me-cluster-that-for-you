@@ -5,7 +5,7 @@ FROM lachlanevenson/k8s-kubectl:v1.17.3 as kubectl-builder
 FROM lachlanevenson/k8s-helm:v3.1.1 as helm-builder
 
 # TERRAFORM (base image here: https://hub.docker.com/r/hashicorp/terraform/tags?page=1&name=0.12)
-FROM hashicorp/terraform:0.12.21
+FROM hashicorp/terraform:0.12.24
 
 # copy all the dependencies
 COPY --from=kubectl-builder /usr/local/bin/kubectl /usr/local/bin/kubectl
@@ -13,7 +13,6 @@ COPY --from=helm-builder /usr/local/bin/helm /usr/local/bin/helm
 COPY . /lmctfy/aws
 
 WORKDIR /lmctfy/aws
-
 
 ENV AWSCLI_VERSION "1.14.10"
 
@@ -30,4 +29,10 @@ RUN apk -v --update add \
     pip install --upgrade awscli==$AWSCLI_VERSION s3cmd==2.0.1 python-magic && \
     apk -v --purge del py-pip && \
     rm /var/cache/apk/*
+
+ARG TERRAGRUNT=v0.23.12
+
+ADD https://github.com/gruntwork-io/terragrunt/releases/download/$TERRAGRUNT/terragrunt_linux_amd64 /usr/local/bin/terragrunt
+
+RUN chmod +x /usr/local/bin/terragrunt
 ENTRYPOINT []

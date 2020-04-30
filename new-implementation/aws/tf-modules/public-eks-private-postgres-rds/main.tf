@@ -1,4 +1,6 @@
-
+terraform {
+  backend "gcs" {}
+}
 resource "random_string" "suffix" {
   length  = 4
   special = false
@@ -29,8 +31,6 @@ module "eks-public" {
   subnets            = "${module.vpc.vpc_public_subnets}"
   vpc_id             = "${module.vpc.vpc_id}"
 }
-
-
 module "postgres-rds" {
   source           = "../backends/postgres-rds"
   region           = var.region

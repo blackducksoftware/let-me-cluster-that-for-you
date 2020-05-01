@@ -1,3 +1,12 @@
+terraform {
+  backend "gcs" {}
+}
+
+provider "google" {
+  project     = var.project_id
+  region      = var.region
+}
+
 resource "random_id" "name" {
   byte_length = 2
 }

@@ -1,5 +1,5 @@
 terraform {
-  source = "../../../tf-modules/backends/vpc"
+  source = "../../../../tf-modules/vpc"
 }
 
 include {

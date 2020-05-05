@@ -1,5 +1,5 @@
 terraform {
-  source = "../../../tf-modules/backends/eks"
+  source = "../../../../tf-modules/eks"
 }
 
 dependency "vpc" {

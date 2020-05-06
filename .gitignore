@@ -1,3 +1,6 @@
+*~
+*.json
+*.dat
 # IDEs
 .idea/
 *.code-workspace

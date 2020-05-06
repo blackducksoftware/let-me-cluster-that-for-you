@@ -5,7 +5,9 @@ variable "rg_name" {
 variable "location" {
   description = "The Azure Region in which all resources in this example should be provisioned"
 }
-
+variable "subnet_id" {
+  description = "the VPC subnet id"
+}
 variable "pg_version" {
   default = "9.6"
 }
@@ -40,3 +42,4 @@ variable "geo_redundant_backup" {
 variable "ssl_enforcement" {
   default = "Enabled"
 }
+

@@ -1,5 +1,5 @@
 terraform {
-  source = "../../../tf-modules/vnet"
+  source = "../../../../tf-modules/vnet"
 }
 
 include {

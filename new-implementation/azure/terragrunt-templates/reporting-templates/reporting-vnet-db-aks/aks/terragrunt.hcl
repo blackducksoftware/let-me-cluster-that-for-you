@@ -1,5 +1,5 @@
 terraform {
-  source = "../../../tf-modules/aks"
+  source = "../../../../tf-modules/aks"
 }
 dependencies {
     paths = ["../vnet"]

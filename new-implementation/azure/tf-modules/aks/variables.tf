@@ -49,6 +49,18 @@ variable "cluster_endpoint_public_access_cidrs" {
                 ]
 }
 
+
+variable "rg_name" {
+  type = string
+}
+variable "rg_location" {
+  type = string
+}
+
+variable "subnet_id" {
+  type = string
+}
+
 # Uncomment to enable SSH access to nodes
 #
 # variable "public_ssh_key_path" {

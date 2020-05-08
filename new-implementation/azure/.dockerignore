@@ -11,3 +11,6 @@
 *.tfstate.backup
 *.terraform.tfstate.lock.info
 tfplan
+.terragrunt-cache
+*~
+.json

@@ -22,7 +22,7 @@ variable "kubernetes_version" {
 variable "region" {
   type        = string
   description = "Region of EKS to setup"
-  default     = "us-east-1"
+  default     = "ap-south-1"
 }
 
 variable "workers" {

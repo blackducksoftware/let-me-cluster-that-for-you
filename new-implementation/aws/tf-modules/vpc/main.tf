@@ -1,3 +1,7 @@
+terraform {
+  backend "gcs" {}
+}
+
 provider "aws" {
   region = var.region
 }

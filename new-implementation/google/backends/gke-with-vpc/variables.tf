@@ -92,14 +92,17 @@ variable "machine_type" {
   default     = "n1-standard-4"
 }
 
+##########
 variable "network_name" {
   description = "The VPC network created to host the cluster in"
   type        = string
+  default     = "gke-network"
 }
 
 variable "subnet_name" {
   description = "The subnetwork created to host the cluster in"
   type        = string
+  default     = "gke-subnet"
 }
 
 variable "region" {
@@ -107,12 +110,4 @@ variable "region" {
   description = "The region for the subnetwork; MUST match region specified in location"
   type        = string
   default     = "us-east1"
-}
-variable "ip_range_pods_name" {
-  type        = string
-  default     = "ip-range-pods"
-}
-variable "ip_range_services_name" {
-  type        = string
-  default     = "ip-range-svc"
 }

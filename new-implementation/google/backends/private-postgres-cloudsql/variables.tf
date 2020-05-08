@@ -3,6 +3,8 @@ variable "project_id" {
   type        = string
 }
 
+
+
 variable "region" {
   description = "The region of the Cloud SQL resources"
   type        = string
@@ -52,10 +54,11 @@ variable "network_name" {
   type        = string
   default     = "psql-network"
 }
-variable "subnet_name" {
-  description = "Name of the VPC"
-  type        = string
-}
+
+
+
+
+
 
 variable "zone" {
   description = "The zone for the master instance, it should be something like: `a`, `c`."

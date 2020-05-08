@@ -17,25 +17,6 @@ variable "postgres_version" {
   default     = "9.6"
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 variable "db_name" {
   type        = string
   description = "Name for of database instance"

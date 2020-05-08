@@ -10,7 +10,7 @@ docker build . -t lmctfy:aws
 ## Run through Docker
 
 ```
-docker run lmctfy:aws sh -c 'export AWS_DEFAULT_REGION="<region>";export AWS_ACCESS_KEY_ID="<access-key>";export AWS_SECRET_ACCESS_KEY="<secret-key>"; cd public-eks-private-postgres-rds; terraform init;terraform apply --auto-approve;'
+docker run -v $(pwd):/root/creds lmctfy:aws sh -c 'export GOOGLE_APPLICATION_CREDENTIALS="/root/creds/google.json";export AWS_DEFAULT_REGION="<region>";export AWS_ACCESS_KEY_ID="<access-key>";export AWS_SECRET_ACCESS_KEY="<secret-key>"; cd terragrunt-templates;terragrunt apply-all --auto-approve --terragrunt-non-interactive;'
 ```
 
 ## Generating AWS creds

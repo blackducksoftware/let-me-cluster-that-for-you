@@ -3,10 +3,6 @@ output "project_id" {
   value       = var.project_id
 }
 
-output "kubeconfig" {
-  value       = local_file.kubeconfig.content
-}
-
 # TODO: ideally output region and zone; instead of region and potentially region+zone
 output "location" {
   value = var.location
@@ -36,3 +32,18 @@ output "kubeconfig_path" {
   description = "Path to kubeconfig file"
   value       = local_file.kubeconfig.filename
 }
+
+output "network_name" {
+  description = "The name of the VPC being created"
+  value       = module.gcp-network.network_name
+}
+
+output "subnet_name" {
+  description = "The name of the subnet being created"
+  value       = module.gcp-network.subnets_names
+}
+
+# output "subnet_secondary_ranges" {
+#   description = "The secondary ranges associated with the subnet"
+#   value       = module.gcp-network.subnets_secondary_ranges
+# }

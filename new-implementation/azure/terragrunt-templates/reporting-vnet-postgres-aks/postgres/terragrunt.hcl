@@ -1,5 +1,5 @@
 terraform {
-  source = "../../../../tf-modules/azure-db"
+  source = "../../../tf-modules/azure-db"
 }
 dependencies {
     paths = ["../vnet"]

@@ -1,5 +1,5 @@
 terraform {
-  source = "../../../../tf-modules/postgres-rds"
+  source = "../../../tf-modules/postgres-rds"
 }
 dependencies {
    paths = ["../vpc"]

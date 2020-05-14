@@ -24,7 +24,11 @@ ENV PATH /google-cloud-sdk/bin:$PATH
 # RUN kubectl version && helm version && aws --version && gcloud version
 
 LABEL maintainer="Yash Bhutwala"
+ARG TERRAGRUNT=v0.23.12
 
+ADD https://github.com/gruntwork-io/terragrunt/releases/download/$TERRAGRUNT/terragrunt_linux_amd64 /usr/local/bin/terragrunt
+
+RUN chmod +x /usr/local/bin/terragrunt
 # copy only the stuff we need
 # these are needed for terraform
 COPY . /lmctfy/google

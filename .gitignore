@@ -13,3 +13,4 @@
 tfplan
 # Only disabling with understanding that we don't leak any private info
 # *.tfvars
+*~

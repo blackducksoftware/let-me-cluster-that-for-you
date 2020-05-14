@@ -11,7 +11,7 @@ include {
 inputs = {
   vpc_id = dependency.vpc.outputs.vpc_id
   subnets = dependency.vpc.outputs.vpc_public_subnets
-  workers = 5
-  instance_type = ""
+  workers = 3
+  instance_type = "t2.large"
 }
 

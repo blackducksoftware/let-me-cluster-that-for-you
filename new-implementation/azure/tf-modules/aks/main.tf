@@ -19,7 +19,7 @@ resource "random_id" "tf-k8s-acc" {
 }
 
 resource "azurerm_kubernetes_cluster" "tf-k8s-acc" {
-  name                = "${local.random_prefix}-cluster"
+  name                = var.cluster_name
   resource_group_name = var.rg_name
   location            = var.rg_location
   dns_prefix          = "${local.random_prefix}-cluster"

@@ -12,6 +12,10 @@ variable "kubernetes_version" {
   type    = string
   default = "1.15"
 }
+variable "cluster_name" {
+  type    = string
+  default = "lmctfycluster"
+}
 
 variable "workers_count" {
   type    = string

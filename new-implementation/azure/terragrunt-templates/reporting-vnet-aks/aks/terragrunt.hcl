@@ -16,4 +16,6 @@ inputs = {
   rg_name = dependency.vnet.outputs.rg_name.name
   rg_location = dependency.vnet.outputs.rg_name.location
   subnet_id = dependency.vnet.outputs.subnet_id
+  workers_count = 3
+  workers_type = "Standard_DS4_v2"
 }

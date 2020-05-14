@@ -50,9 +50,9 @@ module "eks" {
   worker_groups = [
     {
       worker_group_count   = 1
-      instance_type        = "${length(var.instance_type) > 0 ? "var.instance_type" : "m4.large"}"
-      asg_desired_capacity = "${length(var.workers) > 0 ? var.workers : 4}"
-      asg_min_size         = "${length(var.workers) > 0 ? var.workers : 4}"
+      instance_type        = var.instance_type
+      asg_desired_capacity = var.workers
+      asg_min_size         = var.workers
       asg_max_size         = 6
       root_volume_size     = "100"
       root_volume_type     = "gp2"

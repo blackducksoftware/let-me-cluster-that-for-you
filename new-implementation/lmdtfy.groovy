@@ -186,10 +186,12 @@ pipeline {
                            cd $base_dir
                            go build -ldflags "-X main.version=1.2.3" -o synopsysctl ./cmd/synopsysctl
                            ./synopsysctl --version
+                           cp ./synopsysctl /usr/local/bin/synopsysctl
+                           synopsysctl --version
                            cd dev-tests
-                           cp -r ../synopsysctl .
+                           #cp -r ../synopsysctl .
                            echo "{" > config.json
-                           echo '\"synopsysctlPath\": \"./synopsysctl\"' >> config.json  
+                           echo '\"synopsysctlPath\": \"synopsysctl\"' >> config.json  
                            echo "}" >> config.json
                            cat config.json
                            go test synopsysctl-tests/sanity/sanityBlackDuck_test.go -v -count=1 -run ".*"

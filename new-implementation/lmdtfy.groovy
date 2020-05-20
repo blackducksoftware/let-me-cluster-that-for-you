@@ -68,7 +68,7 @@ pipeline {
                            mkdir -p ~/.kube
                            terragrunt output cluster-config > ~/.kube/config
                            export KUBECONFIG=~/.kube/config
-                           
+                           cd $base_dir                           
                            '''
                         }
                     if ( "${k8_provider}"  == "azure" ){
@@ -115,6 +115,7 @@ pipeline {
                            mkdir -p ~/.kube
                            terragrunt output kube_config > ~/.kube/config
                            export KUBECONFIG=~/.kube/config
+                           cd $base_dir
                            '''
                         }
                       }
@@ -161,10 +162,11 @@ pipeline {
                            mkdir -p ~/.kube
                            terragrunt output kubeconfig > ~/.kube/config
                            export KUBECONFIG=~/.kube/config
+                           cd $base_dir
                            '''
 			    }
 			  sh '''
-                             cd $base_dir
+                             pwd
                              go build -ldflags "-X main.version=1.0.0" -o synopsysctl ./cmd/synopsysctl
                              cp ./synopsysctl /usr/local/bin/synopsysctl
                              synopsysctl --version

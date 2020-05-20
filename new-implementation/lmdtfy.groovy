@@ -178,9 +178,9 @@ pipeline {
                            cp -r terragrunt-templates/terragrunt.hcl temp/terragrunt-templates
                            cp -r tf-modules temp/
                            cd  temp/terragrunt-templates
-                           cd $terragrunt_template/aks
+                           cd $terragrunt_template/gke
                            mkdir -p ~/.kube
-                           terragrunt output kube_config > ~/.kube/config
+                           terragrunt output kubeconfig > ~/.kube/config
                            export KUBECONFIG=~/.kube/config
                            kubectl get ns
                            cd $base_dir

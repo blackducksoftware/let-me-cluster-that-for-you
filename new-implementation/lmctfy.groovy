@@ -97,7 +97,6 @@ pipeline {
                       }
                     if ( "${k8_provider}"  == "gcp" ){
                         sh '''
-                           exit 0
                            if [[ $external_db_required == "Yes" && $provsion_env_for == "Reporting" ]]
                            then
                                export terragrunt_template="reporting-vpc-cloudsql-gke"

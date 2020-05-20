@@ -182,10 +182,10 @@ pipeline {
              }
             }
         }
-        stage('teardown'){
-            steps{
-                build job: 'SRIPATHI/lmctfy-destroy-infra', parameters: [string(name: 'provsion_env_for', value: "${provsion_env_for}"), string(name: 'k8_provider', value: "${k8_provider}"), string(name: 'kubernetes_version', value: "${kubernetes_version}"), string(name: 'cluster_name', value: "${cluster_name}"), string(name: 'region', value: "${region}"), string(name: 'external_db_required', value: "${external_db_required}"), string(name: 'db_version', value: "${db_version}")]
-            }
-        }
+        // stage('teardown'){
+        //     steps{
+        //         build job: 'SRIPATHI/lmctfy-destroy-infra', parameters: [string(name: 'provsion_env_for', value: "${provsion_env_for}"), string(name: 'k8_provider', value: "${k8_provider}"), string(name: 'kubernetes_version', value: "${kubernetes_version}"), string(name: 'cluster_name', value: "${cluster_name}"), string(name: 'region', value: "${region}"), string(name: 'external_db_required', value: "${external_db_required}"), string(name: 'db_version', value: "${db_version}")]
+        //     }
+        // }
     }
 }

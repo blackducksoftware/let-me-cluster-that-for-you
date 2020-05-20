@@ -13,7 +13,7 @@ pipeline {
         stage('sanity') {
             agent {
                 docker {
-                image "ksripathi/lmctfy:$k8_provider"
+                image "ksripathi/lmctfy-$k8_provider:latest"
                 alwaysPull true
                 label 'master'
                 args  '-u root:root'

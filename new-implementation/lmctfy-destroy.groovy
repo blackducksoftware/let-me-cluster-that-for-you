@@ -6,7 +6,7 @@ pipeline {
         stage('provisioning') {
             agent {
                 docker {
-                image "ksripathi/lmctfy:$k8_provider"
+                image "ksripathi/lmctfy-$k8_provider:latest"
                 alwaysPull true
                 label 'master'
                 args  '-u root:root'
@@ -59,9 +59,9 @@ pipeline {
                                export terragrunt_template="reporting-vnet-aks"
                            elif [[ $external_db_required == "Yes" && $provsion_env_for == "Blackduck_Hub" ]]
                            then
-                               export terragrunt_template="blackduck-vpc-postgres-eks"
+                               export terragrunt_template="blackduck-vnet-postgres-aks"
                            else
-                               export terragrunt_template="blackduck-vpc-postgres-eks"
+                               export terragrunt_template="blackduck-vnet-aks"
                            fi
                            export GOOGLE_APPLICATION_CREDENTIALS="${infra_key}"
                            export TF_VAR_aks_client_secret=$AZURE_CLIENT_SECRET
@@ -88,10 +88,6 @@ pipeline {
                            cp -r tf-modules temp/
                            cd  temp/terragrunt-templates
                            terragrunt destroy-all --auto-approve --terragrunt-non-interactive
-                           #cd $terragrunt_template/aks
-                           #terragrunt output kube_config > kubeconfig
-                           #export KUBECONFIG=./kubeconfig
-                           #kubectl get ns
                            '''
                         }
                       }
@@ -105,9 +101,9 @@ pipeline {
                                export terragrunt_template="reporting-vpc-gke"
                            elif [[ $external_db_required == "Yes" && $provsion_env_for == "Blackduck_Hub" ]]
                            then
-                               export terragrunt_template="blackduck-vpc-postgres-eks"
+                               export terragrunt_template="blackduck-vpc-cloudsql-gke"
                            else
-                               export terragrunt_template="blackduck-vpc-postgres-eks"
+                               export terragrunt_template="blackduck-vpc-gke"
                            fi
                            export GOOGLE_APPLICATION_CREDENTIALS="${infra_key}"
                            network_name=$(echo "$cluster_name" | tr '[:upper:]' '[:lower:]')"-network"

@@ -6,7 +6,7 @@ pipeline {
         stage('provisioning') {
             agent {
                 docker {
-                image "ksripathi/lmctfy:$k8_provider"
+                image "ksripathi/lmctfy-$k8_provider:latest"
                 alwaysPull true
                 label 'master'
                 args  '-u root:root'
@@ -88,10 +88,6 @@ pipeline {
                            cp -r tf-modules temp/
                            cd  temp/terragrunt-templates
                            terragrunt apply-all --auto-approve --terragrunt-non-interactive
-                           #cd $terragrunt_template/aks
-                           #terragrunt output kube_config > kubeconfig
-                           #export KUBECONFIG=./kubeconfig
-                           #kubectl get ns
                            '''
                         }
                       }

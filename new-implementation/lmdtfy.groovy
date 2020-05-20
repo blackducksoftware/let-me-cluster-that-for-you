@@ -78,7 +78,7 @@ pipeline {
                            echo '\"synopsysctlPath\": \"./synopsysctl\"' >> config.json  
                            echo "}" >> config.json
                            cat config.json
-                           go test sanity/sanityBlackDuck_test.go -v -count=1
+                           go test synopsysctl-tests/sanity/sanityBlackDuck_test.go -v -count=1 -run ".*"
                            '''
                         }
                     if ( "${k8_provider}"  == "azure" ){
@@ -135,7 +135,7 @@ pipeline {
                            echo '\"synopsysctlPath\": \"./synopsysctl\"' >> config.json  
                            echo "}" >> config.json
                            cat config.json
-                           go test sanity/sanityBlackDuck_test.go -v -count=1
+                           go test synopsysctl-tests/sanity/sanityBlackDuck_test.go -v -count=1 -run ".*"
                            '''
                         }
                       }
@@ -192,7 +192,7 @@ pipeline {
                            echo '\"synopsysctlPath\": \"./synopsysctl\"' >> config.json  
                            echo "}" >> config.json
                            cat config.json
-                           go test sanity/sanityBlackDuck_test.go -v -count=1
+                           go test synopsysctl-tests/sanity/sanityBlackDuck_test.go -v -count=1 -run ".*"
 
                            '''
                         }

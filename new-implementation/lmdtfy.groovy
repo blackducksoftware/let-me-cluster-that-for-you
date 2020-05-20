@@ -68,17 +68,7 @@ pipeline {
                            mkdir -p ~/.kube
                            terragrunt output cluster-config > ~/.kube/config
                            export KUBECONFIG=~/.kube/config
-                           kubectl get ns
-                           cd $base_dir
-                           go build -ldflags "-X main.version=1.2.3" -o synopsysctl ./cmd/synopsysctl
-                           ./synopsysctl --version
-                           cd dev-tests
-                           cp -r ../synopsysctl .
-                           echo "{" > config.json
-                           echo '\"synopsysctlPath\": \"./synopsysctl\"' >> config.json  
-                           echo "}" >> config.json
-                           cat config.json
-                           go test synopsysctl-tests/sanity/sanityBlackDuck_test.go -v -count=1 -run ".*"
+                           
                            '''
                         }
                     if ( "${k8_provider}"  == "azure" ){
@@ -125,17 +115,6 @@ pipeline {
                            mkdir -p ~/.kube
                            terragrunt output kube_config > ~/.kube/config
                            export KUBECONFIG=~/.kube/config
-                           kubectl get ns
-                           cd $base_dir
-                           go build -ldflags "-X main.version=1.2.3" -o synopsysctl ./cmd/synopsysctl
-                           ./synopsysctl --version
-                           cd dev-tests
-                           cp -r ../synopsysctl .
-                           echo "{" > config.json
-                           echo '\"synopsysctlPath\": \"./synopsysctl\"' >> config.json  
-                           echo "}" >> config.json
-                           cat config.json
-                           go test synopsysctl-tests/sanity/sanityBlackDuck_test.go -v -count=1 -run ".*"
                            '''
                         }
                       }
@@ -182,22 +161,20 @@ pipeline {
                            mkdir -p ~/.kube
                            terragrunt output kubeconfig > ~/.kube/config
                            export KUBECONFIG=~/.kube/config
-                           kubectl get ns
-                           cd $base_dir
-                           go build -ldflags "-X main.version=1.2.3" -o synopsysctl ./cmd/synopsysctl
-                           ./synopsysctl --version
-                           cp ./synopsysctl /usr/local/bin/synopsysctl
-                           synopsysctl --version
-                           cd dev-tests
-                           #cp -r ../synopsysctl .
-                           echo "{" > config.json
-                           echo '\"synopsysctlPath\": \"synopsysctl\"' >> config.json  
-                           echo "}" >> config.json
-                           cat config.json
-                           go test synopsysctl-tests/sanity/sanityBlackDuck_test.go -v -count=1 -run ".*"
-
                            '''
-                        }
+			    }
+			  sh '''
+                             cd $base_dir
+                             go build -ldflags "-X main.version=1.0.0" -o synopsysctl ./cmd/synopsysctl
+                             cp ./synopsysctl /usr/local/bin/synopsysctl
+                             synopsysctl --version
+                             cd dev-tests
+                             echo "{" > config.json
+                             echo '\"synopsysctlPath\": \"synopsysctl\"' >> config.json  
+                             echo "}" >> config.json
+                             cat config.json
+                             go test synopsysctl-tests/sanity/sanityBlackDuck_test.go -v -count=1 -run ".*"
+                             '''
                     }
                 }
              }

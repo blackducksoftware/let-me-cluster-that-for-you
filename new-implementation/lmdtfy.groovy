@@ -47,7 +47,7 @@ pipeline {
                            then
                                export terragrunt_template="blackduck-vpc-postgres-eks"
                            else
-                               export terragrunt_template="blackduck-vpc-postgres-eks"
+                               export terragrunt_template="blackduck-vpc-eks"
                            fi
                            export GOOGLE_APPLICATION_CREDENTIALS="${infra_key}"
                            export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
@@ -94,9 +94,9 @@ pipeline {
                                export terragrunt_template="reporting-vnet-aks"
                            elif [[ $external_db_required == "Yes" && $provsion_env_for == "Blackduck_Hub" ]]
                            then
-                               export terragrunt_template="blackduck-net-postgres-aks"
-                           else
                                export terragrunt_template="blackduck-vnet-postgres-aks"
+                           else
+                               export terragrunt_template="blackduck-vnet-aks"
                            fi
                            export GOOGLE_APPLICATION_CREDENTIALS="${infra_key}"
                            export TF_VAR_aks_client_secret=$AZURE_CLIENT_SECRET
@@ -152,7 +152,7 @@ pipeline {
                            then
                                export terragrunt_template="blackduck-vpc-cloudsql-gke"
                            else
-                               export terragrunt_template="blackduck-vpc-cloudsql-gke"
+                               export terragrunt_template="blackduck-vpc-gke"
                            fi
                            export GOOGLE_APPLICATION_CREDENTIALS="${infra_key}"
                            network_name=$(echo "$cluster_name" | tr '[:upper:]' '[:lower:]')"-network"

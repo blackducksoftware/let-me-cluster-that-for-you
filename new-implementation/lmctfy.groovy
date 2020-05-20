@@ -28,7 +28,7 @@ pipeline {
                            then
                                export terragrunt_template="blackduck-vpc-postgres-eks"
                            else
-                               export terragrunt_template="blackduck-vpc-postgres-eks"
+                               export terragrunt_template="blackduck-vpc-eks"
                            fi
                            export GOOGLE_APPLICATION_CREDENTIALS="${infra_key}"
                            export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}

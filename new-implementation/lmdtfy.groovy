@@ -63,7 +63,7 @@ pipeline {
                            cp -r terragrunt-templates/$terragrunt_template temp/terragrunt-templates/
                            cp -r terragrunt-templates/terragrunt.hcl temp/terragrunt-templates
                            cp -r tf-modules temp/
-                           cd  temp/terragrunt-templates
+                           cd temp/terragrunt-templates
                            cd $terragrunt_template/eks
                            mkdir -p ~/.kube
                            terragrunt output cluster-config > ~/.kube/config

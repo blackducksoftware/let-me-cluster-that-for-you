@@ -193,7 +193,15 @@ pipeline {
                              echo '\"synopsysctlPath\": \"synopsysctl\"' >> config.json  
                              echo "}" >> config.json
                              cat config.json
-                             go test synopsysctl-tests/sanity/sanityBlackDuck_test.go -v -count=1 -run ".*"
+                             if [ $provsion_env_for == "Blackduck_Hub" ]
+                             then
+                                 go test synopsysctl-tests/sanity/sanityBlackDuck_test.go -v -count=1 -run ".*"
+                             elif [ $provsion_env_for == "Alert" ]
+                             then
+                                go test synopsysctl-tests/sanity/sanityAlert_test.go -v -count=1 -run ".*"
+                             else
+                                echo "comming soon..."
+                             fi                             
                              '''
                     }
                 }

@@ -43,6 +43,12 @@ pipeline {
                            elif [[ $external_db_required == "No" && $provsion_env_for == "Reporting" ]]
                            then
                                export terragrunt_template="reporting-vpc-eks"
+                           elif [[ $external_db_required == "Yes" && $provsion_env_for == "Alert" ]]
+                           then
+                               export terragrunt_template="alert-vpc-postgres-eks"
+                           elif [[ $external_db_required == "No" && $provsion_env_for == "Alert" ]]
+                           then
+                               export terragrunt_template="alert-vpc-eks"
                            elif [[ $external_db_required == "Yes" && $provsion_env_for == "Blackduck_Hub" ]]
                            then
                                export terragrunt_template="blackduck-vpc-postgres-eks"
@@ -82,6 +88,12 @@ pipeline {
                            elif [[ $external_db_required == "No" && $provsion_env_for == "Reporting" ]]
                            then
                                export terragrunt_template="reporting-vnet-aks"
+                           elif [[ $external_db_required == "Yes" && $provsion_env_for == "Alert" ]]
+                           then
+                               export terragrunt_template="alert-vnet-postgres-aks"
+                           elif [[ $external_db_required == "No" && $provsion_env_for == "Alert" ]]
+                           then
+                               export terragrunt_template="alert-vnet-aks"
                            elif [[ $external_db_required == "Yes" && $provsion_env_for == "Blackduck_Hub" ]]
                            then
                                export terragrunt_template="blackduck-vnet-postgres-aks"
@@ -128,6 +140,12 @@ pipeline {
                            elif [[ $external_db_required == "No" && $provsion_env_for == "Reporting" ]]
                            then
                                export terragrunt_template="reporting-vpc-gke"
+                           elif [[ $external_db_required == "Yes" && $provsion_env_for == "Alert" ]]
+                           then
+                               export terragrunt_template="alert-vpc-cloudsql-gke"
+                           elif [[ $external_db_required == "No" && $provsion_env_for == "Alert" ]]
+                           then
+                               export terragrunt_template="alert-vpc-gke"
                            elif [[ $external_db_required == "Yes" && $provsion_env_for == "Blackduck_Hub" ]]
                            then
                                export terragrunt_template="blackduck-vpc-cloudsql-gke"

@@ -11,7 +11,7 @@ include {
 inputs = {
   network_name = dependency.vpc.outputs.network_name
   subnet_name = dependency.vpc.outputs.subnet_name[0]
-  initial_node_count = 5
+  initial_node_count = 1
   machine_type = "n1-standard-4"
 }
 

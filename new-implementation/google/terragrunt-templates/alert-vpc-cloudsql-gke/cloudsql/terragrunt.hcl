@@ -1,18 +1,18 @@
 terraform {
-  source = "../../../tf-modules/gke"
+  source = "../../../tf-modules/cloudsql"
 }
+dependencies {
+    paths = ["../vpc"]
+  }
 
 dependency "vpc" {
   config_path = "../vpc"
 }
+
 include {
   path = "${find_in_parent_folders()}"
 }
 inputs = {
   network_name = dependency.vpc.outputs.network_name
   subnet_name = dependency.vpc.outputs.subnet_name[0]
-  initial_node_count = 5
-  machine_type = "n1-standard-4"
 }
-
-

@@ -11,6 +11,8 @@
 *.tfstate.backup
 *.terraform.tfstate.lock.info
 tfplan
+**.terragrunt-cache/
+**temp/
 # Only disabling with understanding that we don't leak any private info
 # *.tfvars
 *~

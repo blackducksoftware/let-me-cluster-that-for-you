@@ -6,6 +6,7 @@ Infrastructure as code turned into simple declarative APIs to create clusters on
 <!-- omit in toc -->
 ## Table of Contents
 
+- [Running from within jenkins](#running-from-within-jenkins)
 - [Google Cloud](#google-cloud)
   - [GKE cluster w/ private CloudSQL](#gke-cluster-w-private-cloudsql)
     - [Running from source](#running-from-source)
@@ -15,6 +16,15 @@ Infrastructure as code turned into simple declarative APIs to create clusters on
 - [Azure](#azure)
   - [AKS with private Azure DB](#aks-with-private-azure-db)
     - [Running from source](#running-from-source-2)
+
+## Running from within jenkins
+
+This repo provides reference, opinionated jenkins jobs for demonstrating and using the underlying workflows.  Check out [lmctfy.groovy](./new-implementation/lmctfy.groovy) for provisioning, its complementary [lmctfy-destroy.groovy](./new-implementation/lmctfy-destroy.groovy) to cleanup all the deployed cloud resources and [lmdtfy.groovy](./new-implementation/lmdtfy.groovy) for an end to end workflow of provision, deploy application, run sanity tests and teardown.  All of this use the docker images under `ksripathi` username, so: `ksripathi/lmctfy-gcp:latest`, `ksripathi/lmctfy-aws:latest`, `ksripathi/lmctfy-azure:latest`.  Example jobs are available for internal Synopsys usage [here](https://jenkins-onprem.dev.polaris.synopsys.com/job/SRIPATHI/).  See the example images here:
+
+![lmctfy API build parameters](./images/lmctfy-api.png)
+![lmctfy pipeline](./images/lmctfy-pipeline.png)
+![lmdtfy API build parameters](./images/lmdtfy-api.png)
+![lmdtfy pipeline](./images/lmdtfy-pipeline.png)
 
 ## Google Cloud
 
@@ -41,13 +51,9 @@ cp -r terragrunt-templates/blackduck-vpc-cloudsql-gke/ temp/terragrunt-templates
 cp -r tf-modules temp
 cp -r terragrunt-templates/terragrunt.hcl temp/terragrunt-templates
 cd temp/terragrunt-templates
+terragrunt init
+terragrunt plan-all
 terragrunt apply-all --auto-approve --terragrunt-non-interactive
-
-# resulting in this error right now:
-# Cannot process module Module /Users/bhutwala/gocode/src/github.com/blackducksoftware/let-me-cluster-that-for-you/new-implementation/google/temp/terragrunt-templates/gke (excluded: false, dependencies: [/Users/bhutwala/gocode/src/github.com/blackducksoftware/let-me-cluster-that-for-you/new-implementation/google/temp/terragrunt-templates/vpc]) because one of its dependencies, Module /Users/bhutwala/gocode/src/github.com/blackducksoftware/let-me-cluster-that-for-you/new-implementation/google/temp/terragrunt-templates/vpc (excluded: false, dependencies: []), finished with an error: Missing required GCS remote state configuration project
-
-# Missing required GCS remote state configuration project
-# Cannot process module Module /Users/bhutwala/gocode/src/github.com/blackducksoftware/let-me-cluster-that-for-you/new-implementation/google/temp/terragrunt-templates/cloudsql (excluded: false, dependencies: [/Users/bhutwala/gocode/src/github.com/blackducksoftware/let-me-cluster-that-for-you/new-implementation/google/temp/terragrunt-templates/vpc]) because one of its dependencies, Module /Users/bhutwala/gocode/src/github.com/blackducksoftware/let-me-cluster-that-for-you/new-implementation/google/temp/terragrunt-templates/vpc (excluded: false, dependencies: []), finished with an error: Missing required GCS remote state configuration project
 ```
 
 <!-- omit in toc -->

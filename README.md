@@ -8,6 +8,7 @@ Infrastructure as code turned into simple declarative APIs to create clusters on
 
 - [Running from within jenkins](#running-from-within-jenkins)
 - [Google Cloud](#google-cloud)
+  - [Prerequisities](#prerequisities)
   - [GKE cluster w/ private CloudSQL](#gke-cluster-w-private-cloudsql)
     - [Running from source](#running-from-source)
 - [AWS](#aws)
@@ -28,14 +29,20 @@ This repo provides reference, opinionated jenkins jobs for demonstrating and usi
 
 ## Google Cloud
 
+### Prerequisities
+
+1. Generate Credentials
+
+    [Google docs on generating credentials](https://cloud.google.com/iam/docs/creating-managing-service-account-keys)
+
+    TL;DR: `IAM & Admin` -> `Service accounts` -> `More` -> `Create key`
+    Save and use the full path to your new  `.json` as `GOOGLE_APPLICATION_CREDENTIALS` environment variable
+
+2. Make a GCS bucket manually (named `onprem-terragrunt-tf-state` by default)
+
 ### GKE cluster w/ private CloudSQL
 
 #### Running from source
-
-Generate Credentials: https://cloud.google.com/iam/docs/creating-managing-service-account-keys
-
-TL;DR: `IAM & Admin` -> `Service accounts` -> `More` -> `Create key`
-Save and use the full path to your new  `.json` as `GOOGLE_APPLICATION_CREDENTIALS` environment variable
 
 ```bash
 export GOOGLE_APPLICATION_CREDENTIALS=$HOME/.config/gcloud/manual-put-by-yash/<file.json>
